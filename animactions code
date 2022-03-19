@@ -1,0 +1,129 @@
+$If[$message[1]==]
+    $sendMessage[Welcome to the gif reactions! 
+    
+Express yourself with lively action gifs to add some fresh vibes to your Discord experience.
+
+Use the command 
+
+!a 
+
+plus the argument with your action like this:
+
+!a owo
+
+For a list of total actions, type 
+
+!a list
+
+For a look at your stats, type:
+
+!a stats
+
+Enjoy! ^^
+https://tenor.com/bHHah.gif]
+$endIf
+$if[$message[1]==list]
+    $sendMessage[Here's a list of all of the available animactions!
+    
+agree, angry, apologize, attack, ban, blush, bonk, bored, byebye, carry, challenge, comfort, cook, cringe, dance, derp, (die, dieinside,) evilpleasure, excited, eyebrow raise, flex, frustrated, getrekt, goodmorning, goodnight, happybirthday, happy, hi, hide, hiss, hmm, hug, ignore, ily, no, pathead, stare, shrug, 
+
+More coming soon!]
+$endIf
+$if[$message[1]==stats]
+    $sendMessage[Currently under construction but coming soon!]
+$endIf
+/*shrugs*/
+$if[$message[1]==shrug&&$getUserVar[shrugc]==undefined&&$mentioned[1]!=]
+    $setUserVar[shrugc;1]
+    $setUserVar[shrugac;1]
+    $if[$getUserVar[shrugdac;$mentioned[1]]==undefined]
+        $setUserVar[shrugdac;1;$mentioned[1]]
+        $else
+        $setUserVar[shrugdac;$sum[$getUserVar[shrugdac;$mentioned[1]];1];$mentioned[1]]
+    $endIf
+    $if[$getUserVar[shrugdac]==undefined]
+        $setUserVar[shrugdac;0]
+    $endIf
+    $sendMessage[{description: $username shrugs at $username[$mentioned[1]] ... }
+{image:$randomText[https://cdn.discordapp.com/attachments/919386688810258493/939776420656336916/shrug1.gif;https://cdn.discordapp.com/attachments/919386688810258493/939776421054808105/shrug2.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869793417302026/shrug3m.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869793794785300/shrug4.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869794570756137/shrug5.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869794948239400/shrug6.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874130352807936/shrug7.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874131523035177/shrug8.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874132076675164/shrug9.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874132605169676/shrug10.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958971672977518/shrug11.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958972012711976/shrug12.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958972297904219/shrug13.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958974713856020/shrug14.gif;https://cdn.discordapp.com/attachments/919386688810258493/940103751300186132/shrug15.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104348099280906/shrug17.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104348480966716/shrug18.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104348753608746/shrug19.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104349017866320/shrug20.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104545407754301/shrug21.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104545692958811/shrug22.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104545923637298/shrug23.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104546284367892/shrug24.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104705214914580/shrug25.gif]}
+{footer: $username has shrugged at others $getUserVar[shrugac] times and been shrugged at by others $getUserVar[shrugdac] times!}]
+$elseif[$message[1]==shrug&&$getUserVar[shrugc]==undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]
+    $setUserVar[shrugc;1]
+    $setUserVar[shrugac;1]
+    $if[$getUserVar[shrugdac;$msg[$channelid;$referencemessageid;author]]==undefined]
+        $setUserVar[shrugdac;1;$msg[$channelid;$referencemessageid;author]]
+        $else
+        $setUserVar[shrugdac;$sum[$getUserVar[shrugdac;$msg[$channelid;$referencemessageid;author]];1];$msg[$channelid;$referencemessageid;author]]
+    $endIf
+    $if[$getUserVar[shrugdac]==undefined]
+        $setUserVar[shrugdac;0]
+    $endIf
+    $sendMessage[{description: $username shrugs at $username[$msg[$channelid;$referencemessageid;author]] ... }
+{image:$randomText[https://cdn.discordapp.com/attachments/919386688810258493/939776420656336916/shrug1.gif;https://cdn.discordapp.com/attachments/919386688810258493/939776421054808105/shrug2.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869793417302026/shrug3m.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869793794785300/shrug4.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869794570756137/shrug5.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869794948239400/shrug6.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874130352807936/shrug7.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874131523035177/shrug8.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874132076675164/shrug9.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874132605169676/shrug10.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958971672977518/shrug11.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958972012711976/shrug12.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958972297904219/shrug13.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958974713856020/shrug14.gif;https://cdn.discordapp.com/attachments/919386688810258493/940103751300186132/shrug15.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104348099280906/shrug17.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104348480966716/shrug18.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104348753608746/shrug19.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104349017866320/shrug20.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104545407754301/shrug21.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104545692958811/shrug22.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104545923637298/shrug23.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104546284367892/shrug24.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104705214914580/shrug25.gif]}
+{footer: $username has shrugged at others $getUserVar[shrugac] times and been shrugged at by others $getUserVar[shrugdac] times!}]
+$endelseif
+$elseif[$message[1]==shrug&&$getUserVar[shrugc]==undefined&&$mentioned[1]==]
+    $setUserVar[shrugc;1]
+    $setUserVar[shrugac;0]
+    $if[$getUserVar[shrugdac]==undefined]
+        $setUserVar[shrugdac;0]
+    $endIf
+    $sendMessage[{description: $username shrugs ... }
+{image:$randomText[https://cdn.discordapp.com/attachments/919386688810258493/939776420656336916/shrug1.gif;https://cdn.discordapp.com/attachments/919386688810258493/939776421054808105/shrug2.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869793417302026/shrug3m.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869793794785300/shrug4.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869794570756137/shrug5.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869794948239400/shrug6.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874130352807936/shrug7.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874131523035177/shrug8.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874132076675164/shrug9.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874132605169676/shrug10.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958971672977518/shrug11.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958972012711976/shrug12.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958972297904219/shrug13.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958974713856020/shrug14.gif;https://cdn.discordapp.com/attachments/919386688810258493/940103751300186132/shrug15.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104348099280906/shrug17.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104348480966716/shrug18.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104348753608746/shrug19.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104349017866320/shrug20.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104545407754301/shrug21.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104545692958811/shrug22.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104545923637298/shrug23.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104546284367892/shrug24.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104705214914580/shrug25.gif]}
+{footer: $username has shrugged at others $getUserVar[shrugac] times and been shrugged at by others $getUserVar[shrugdac] times!}]
+$endelseif
+$elseif[$message[1]==shrug&&$getUserVar[shrugc]!=undefined&&$mentioned[1]!=]
+    $setUserVar[shrugc;$sum[$getUserVar[shrugc];1]]
+    $if[$getUserVar[shrugac]==undefined]
+        $setUserVar[shrugac;1]
+        $else
+        $setUserVar[shrugac;$sum[$getUserVar[shrugac];1]]
+    $endIf
+    $if[$getUserVar[shrugdac;$mentioned[1]]==undefined]
+        $setUserVar[shrugdac;1;$mentioned[1]]
+        $else
+        $setUserVar[shrugdac;$sum[$getUserVar[shrugdac;$mentioned[1]];1];$mentioned[1]]
+    $endIf
+    $if[$getUserVar[shrugdac]==undefined]
+        $setUserVar[shrugdac;0]
+    $endIf
+    $sendMessage[{description: $username shrugs at $username[$mentioned[1]] ... }
+{image:$randomText[https://cdn.discordapp.com/attachments/919386688810258493/939776420656336916/shrug1.gif;https://cdn.discordapp.com/attachments/919386688810258493/939776421054808105/shrug2.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869793417302026/shrug3m.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869793794785300/shrug4.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869794570756137/shrug5.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869794948239400/shrug6.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874130352807936/shrug7.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874131523035177/shrug8.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874132076675164/shrug9.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874132605169676/shrug10.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958971672977518/shrug11.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958972012711976/shrug12.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958972297904219/shrug13.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958974713856020/shrug14.gif;https://cdn.discordapp.com/attachments/919386688810258493/940103751300186132/shrug15.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104348099280906/shrug17.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104348480966716/shrug18.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104348753608746/shrug19.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104349017866320/shrug20.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104545407754301/shrug21.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104545692958811/shrug22.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104545923637298/shrug23.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104546284367892/shrug24.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104705214914580/shrug25.gif]}
+{footer: $username has shrugged at others $getUserVar[shrugac] times and been shrugged at by others $getUserVar[shrugdac] times!}]
+$endelseif
+$elseif[$message[1]==shrug&&$getUserVar[shrugc]!=undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]
+    $setUserVar[shrugc;$sum[$getUserVar[shrugc];1]]
+    $if[$getUserVar[shrugac]==undefined]
+        $setUserVar[shrugac;1]
+        $else
+        $setUserVar[shrugac;$sum[$getUserVar[shrugac];1]]
+    $endIf
+    $if[$getUserVar[shrugdac;$msg[$channelid;$referencemessageid;author]]==undefined]
+        $setUserVar[shrugdac;1;$msg[$channelid;$referencemessageid;author]]
+        $else
+        $setUserVar[shrugdac;$sum[$getUserVar[shrugdac;$msg[$channelid;$referencemessageid;author]];1];$msg[$channelid;$referencemessageid;author]]
+    $endIf
+    $if[$getUserVar[shrugdac]==undefined]
+        $setUserVar[shrugdac;0]
+    $endIf
+    $sendMessage[{description: $username shrugs at $username[$msg[$channelid;$referencemessageid;author]] ... }
+{image:$randomText[https://cdn.discordapp.com/attachments/919386688810258493/939776420656336916/shrug1.gif;https://cdn.discordapp.com/attachments/919386688810258493/939776421054808105/shrug2.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869793417302026/shrug3m.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869793794785300/shrug4.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869794570756137/shrug5.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869794948239400/shrug6.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874130352807936/shrug7.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874131523035177/shrug8.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874132076675164/shrug9.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874132605169676/shrug10.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958971672977518/shrug11.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958972012711976/shrug12.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958972297904219/shrug13.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958974713856020/shrug14.gif;https://cdn.discordapp.com/attachments/919386688810258493/940103751300186132/shrug15.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104348099280906/shrug17.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104348480966716/shrug18.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104348753608746/shrug19.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104349017866320/shrug20.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104545407754301/shrug21.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104545692958811/shrug22.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104545923637298/shrug23.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104546284367892/shrug24.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104705214914580/shrug25.gif]}
+{footer: $username has shrugged at others $getUserVar[shrugac] times and been shrugged at by others $getUserVar[shrugdac] times!}]
+$endelseif
+$elseif[$message[1]==shrug&&$getUserVar[shrugc]!=undefined&&$mentioned[1]==]
+    $setUserVar[shrugc;$sum[$getUserVar[shrugc];1]]
+    $if[$getUserVar[shrugdac]==undefined]
+        $setUserVar[shrugdac;0]
+    $endIf
+    $sendMessage[{description: $username shrugs ... }
+{image:$randomText[https://cdn.discordapp.com/attachments/919386688810258493/939776420656336916/shrug1.gif;https://cdn.discordapp.com/attachments/919386688810258493/939776421054808105/shrug2.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869793417302026/shrug3m.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869793794785300/shrug4.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869794570756137/shrug5.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869794948239400/shrug6.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874130352807936/shrug7.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874131523035177/shrug8.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874132076675164/shrug9.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874132605169676/shrug10.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958971672977518/shrug11.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958972012711976/shrug12.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958972297904219/shrug13.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958974713856020/shrug14.gif;https://cdn.discordapp.com/attachments/919386688810258493/940103751300186132/shrug15.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104348099280906/shrug17.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104348480966716/shrug18.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104348753608746/shrug19.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104349017866320/shrug20.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104545407754301/shrug21.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104545692958811/shrug22.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104545923637298/shrug23.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104546284367892/shrug24.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104705214914580/shrug25.gif]}
+{footer: $username has shrugged at others $getUserVar[shrugac] times and been shrugged at by others $getUserVar[shrugdac] times!}]
+$endelseif
+/*$elseif[$message[1]==shrug&&$getUserVar[shrugc]!=undefined]
+    $setUserVar[shrugc;$sum[$getUserVar[shrugc]];1]
+    $sendMessage[{description: $username shrugs ... }
+{image:$randomText[https://cdn.discordapp.com/attachments/919386688810258493/939776420656336916/shrug1.gif;https://cdn.discordapp.com/attachments/919386688810258493/939776421054808105/shrug2.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869793417302026/shrug3m.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869793794785300/shrug4.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869794570756137/shrug5.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869794948239400/shrug6.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874130352807936/shrug7.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874131523035177/shrug8.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874132076675164/shrug9.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874132605169676/shrug10.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958971672977518/shrug11.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958972012711976/shrug12.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958972297904219/shrug13.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958974713856020/shrug14.gif;https://cdn.discordapp.com/attachments/919386688810258493/940103751300186132/shrug15.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104348099280906/shrug17.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104348480966716/shrug18.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104348753608746/shrug19.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104349017866320/shrug20.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104545407754301/shrug21.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104545692958811/shrug22.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104545923637298/shrug23.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104546284367892/shrug24.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104705214914580/shrug25.gif]}
+{footer: $username has shrugged at others $getUserVar[shrugac] times and been shrugged at by others $getUserVar[shrugdac] times!}]
+$endelseif*/
+$endIf
+/*endshrugs*/
