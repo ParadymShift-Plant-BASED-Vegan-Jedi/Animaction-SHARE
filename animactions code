@@ -1,4 +1,9 @@
 $If[$message[1]==]
+/*     
+
+When no argument is given, this generic message will be sent     
+
+*/
     $sendMessage[Welcome to the gif reactions! 
     
 Express yourself with lively action gifs to add some fresh vibes to your Discord experience.
@@ -23,13 +28,23 @@ Enjoy! ^^
 https://tenor.com/bHHah.gif]
 $endIf
 $if[$message[1]==list]
-    $sendMessage[Here's a list of all of the available animactions!
+/*        
+
+when the first argument is 'list', regardless of whatever else is written for the next arguments, the list will be sent       
+
+*/
+    $sendMessage[Here's a list of all of the available actions!
     
 agree, angry, apologize, attack, ban, blush, bonk, bored, byebye, carry, challenge, comfort, cook, cringe, cry, dance, derp, dieinside, eat, evilpleasure, excited, eyebrow raise, flex, frustrated, getrekt, goodmorning, goodnight, happybirthday, happy, hi, hide, hiss, hmm, hug, ignore, ily, laugh, lazy, love, no, notimpressed, ohno, okay, owo, pathead, photosnap, please, preen, pull, runaway, shrug, shy, sigh, smile, spank, stare, stop, surprised, thumbsdown, thumbsup, uwu, wave, whatsup, worried, wtf, taunt, welcome, what, mmyummy
 
 More coming soon!]
 $endIf
 $if[$message[1]==stats]
+/*         
+
+when the first argument is 'stats', the following stat message will be sent        
+
+*/
     $sendMessage[Currently under construction but coming soon!]
 $endIf
 /*
@@ -37,15 +52,15 @@ $endIf
 Here is where the shrug command begins:
 
 */
-$if[$message[1]==shrug&&$getUserVar[shrugc]==undefined&&$mentioned[1]!=]/*   This if condition is for when the user runs the shrug command but has never shrugged or been shrugged at before (verified by the $getUserVar[shrugc] [shrug count] being undefined) while also mentioning another user (to shrug at) */
+$if[$message[1]==shrug&&$getUserVar[shrugc]==undefined&&$mentioned[1]!=]/*   This if condition is for when the user runs the shrug command but has never shrugged (verified by the $getUserVar[shrugc] [shrug count] being undefined) while also mentioning another user (to shrug at) */
     $setUserVar[shrugc;1]
     $setUserVar[shrugac;1]
-    $if[$getUserVar[shrugdac;$mentioned[1]]==undefined]/* I took a break here for being tired. I am explaining and organizing everything for others in case they want to change my code or whatever. */
+    $if[$getUserVar[shrugdac;$mentioned[1]]==undefined]/* given the above condition, if the shruggedat count for the person being mentioned is ALSO undefined, the following code will run   */
         $setUserVar[shrugdac;1;$mentioned[1]]
-        $else
+        $else/*       If the person being mentioned has a shruggedat count which IS defined, then the following code will run, ending the condition given the above condition      */
         $setUserVar[shrugdac;$sum[$getUserVar[shrugdac;$mentioned[1]];1];$mentioned[1]]
     $endIf
-    $if[$getUserVar[shrugdac]==undefined]
+    $if[$getUserVar[shrugdac]==undefined]/*    given the above condition, this condition will check to see if the user performing the action has ever been shruggedat before. If not, that count will be set to 0.    */
         $setUserVar[shrugdac;0]
     $endIf
     $sendMessage[{description: $username shrugs at $username[$mentioned[1]] ... }
