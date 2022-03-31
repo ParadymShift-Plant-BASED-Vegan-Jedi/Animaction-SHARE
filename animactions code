@@ -103,21 +103,21 @@ $if[$message[1]==shrug&&$getUserVar[shrugc]==undefined&&$mentioned[1]!=]/*   Thi
             $else/*       Given Condition[4], if the shruggedat count of the person being tagged IS defined, the following code will be run, updating the shruggedat var by adding one value to the var       */
                 $setUserVar[shrugdac;$sum[$getUserVar[shrugdac;$mentioned[1]];1];$mentioned[1]]
         $endIf
-        $if[$getUserVar[shrugdac]==undefined]/*         Given Condition[4]     I'M LEAVING OFF RIGHT HERE TO DO OTHER THINGS!         */
+        $if[$getUserVar[shrugdac]==undefined]/*         Given Condition[4], the following code will run so long as the user shrugat count is undefined, setting it to 0.         */
             $setUserVar[shrugdac;0]
         $endIf
-        $sendMessage[{description: $username shrugs at $username[$mentioned[1]] ... }
-{image:$randomText[https://cdn.discordapp.com/attachments/919386688810258493/939776420656336916/shrug1.gif;https://cdn.discordapp.com/attachments/919386688810258493/939776421054808105/shrug2.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869793417302026/shrug3m.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869793794785300/shrug4.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869794570756137/shrug5.gif;https://cdn.discordapp.com/attachments/919386688810258493/939869794948239400/shrug6.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874130352807936/shrug7.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874131523035177/shrug8.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874132076675164/shrug9.gif;https://cdn.discordapp.com/attachments/919386688810258493/939874132605169676/shrug10.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958971672977518/shrug11.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958972012711976/shrug12.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958972297904219/shrug13.gif;https://cdn.discordapp.com/attachments/919386688810258493/939958974713856020/shrug14.gif;https://cdn.discordapp.com/attachments/919386688810258493/940103751300186132/shrug15.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104348099280906/shrug17.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104348480966716/shrug18.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104348753608746/shrug19.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104349017866320/shrug20.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104545407754301/shrug21.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104545692958811/shrug22.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104545923637298/shrug23.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104546284367892/shrug24.gif;https://cdn.discordapp.com/attachments/919386688810258493/940104705214914580/shrug25.gif]}
+        $sendMessage[{description: $username shrugs at $username[$mentioned[1]] ... }/*          given Condition[3], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+{image:$randomText[{image:$randomText[SHRUGImageLink1.gif;SHRUGImageLink2.gif;SHRUGImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
 {footer: $username has shrugged at others $getUserVar[shrugac] times and been shrugged at by others $getUserVar[shrugdac] times!}]
     $endelseif
-    $elseif[$message[1]==shrug&&$getUserVar[shrugc]!=undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]
+    $elseif[$message[1]==shrug&&$getUserVar[shrugc]!=undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*         Given that Conditions[1-4] are false, this condition, known as Condition[5] will be run so long as the user shrugcount is NOT undefined AND the user IS replying to someone who is NOT the original shrugging user. In other words, if you reply to any message BESIDES your own message, but you HAVE shrugged before, the following code will run, adding one value to the user shrug count.           */
         $setUserVar[shrugc;$sum[$getUserVar[shrugc];1]]
-        $if[$getUserVar[shrugac]==undefined]
+        $if[$getUserVar[shrugac]==undefined]/*        Given Condition[5], if the user shrugat count is undefined, the following code will run, setting it to 1.        */
             $setUserVar[shrugac;1]
-            $else
+            $else/*        However, if the user shrugat count IS defined, the following code will run, adding one value to the shrugat count.        */
                 $setUserVar[shrugac;$sum[$getUserVar[shrugac];1]]
         $endIf
-        $if[$getUserVar[shrugdac;$msg[$channelid;$referencemessageid;author]]==undefined]
+        $if[$getUserVar[shrugdac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        I LEFT OFF HERE TO DO OTHER THINGS        */
             $setUserVar[shrugdac;1;$msg[$channelid;$referencemessageid;author]]
             $else
                 $setUserVar[shrugdac;$sum[$getUserVar[shrugdac;$msg[$channelid;$referencemessageid;author]];1];$msg[$channelid;$referencemessageid;author]]
