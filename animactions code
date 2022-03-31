@@ -64,7 +64,7 @@ $if[$message[1]==shrug&&$getUserVar[shrugc]==undefined&&$mentioned[1]!=]/*   Thi
         $setUserVar[shrugdac;0]
     $endIf
     $sendMessage[{description: $username shrugs at $username[$mentioned[1]] ... }/*    given Condition[1], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
-{image:$randomText[ImageLink1.gif;ImageLink2.gif;ImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU     */
+{image:$randomText[ImageLink1.gif;ImageLink2.gif;ImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then COPY the links and ADD/PASTE them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
 {footer: $username has shrugged at others $getUserVar[shrugac] times and been shrugged at by others $getUserVar[shrugdac] times!}]
     $elseif[$message[1]==shrug&&$getUserVar[shrugc]==undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*      given that the Condition[1] is false, this condition, called Condition[2], will be run so long as the user shrugging has an undefined shrug count AND the non-mention reply individual is not the same person running the command. In other words, if you reply to a message but don't use a mention reply while using this command, this code will run, setting the user shrug count and user shrugat count each to 1       */
         $setUserVar[shrugc;1]
@@ -74,36 +74,36 @@ $if[$message[1]==shrug&&$getUserVar[shrugc]==undefined&&$mentioned[1]!=]/*   Thi
             $else/*      But, if the shruggedat count of the user being replied (without a mention) to IS defined, the following code will run, ending the condition for when the person being replied (without a mention) to has a shruggedat count which is undefined by adding a count to this user's already pre-defined shruggedat count       */ 
                 $setUserVar[shrugdac;$sum[$getUserVar[shrugdac;$msg[$channelid;$referencemessageid;author]];1];$msg[$channelid;$referencemessageid;author]]
         $endIf
-        $if[$getUserVar[shrugdac]==undefined]/*      I left off here feeling tired and like I ought save       */
+        $if[$getUserVar[shrugdac]==undefined]/*      Given condition[2], if the User shruggedat count is undefined, the following code will run, setting it to 0.       */
             $setUserVar[shrugdac;0]
         $endIf
-        $sendMessage[{description: $username shrugs at $username[$msg[$channelid;$referencemessageid;author]] ... }
-{image:$randomText[{image:$randomText[SHRUGImageLink1.gif;SHRUGImageLink2.gif;SHRUGImageLink3.gif... etc.]}
+        $sendMessage[{description: $username shrugs at $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[2], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+{image:$randomText[{image:$randomText[SHRUGImageLink1.gif;SHRUGImageLink2.gif;SHRUGImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
 {footer: $username has shrugged at others $getUserVar[shrugac] times and been shrugged at by others $getUserVar[shrugdac] times!}]
     $endelseif
-    $elseif[$message[1]==shrug&&$getUserVar[shrugc]==undefined&&$mentioned[1]==]
+    $elseif[$message[1]==shrug&&$getUserVar[shrugc]==undefined&&$mentioned[1]==]/*         Given that both Condition[1] and Condition[2] are false, this condition, known as Condition[3] will be run, so long as the user shrugcount is undefined and user has also NOT mentioned another user to shrug at, the following code will run, setting the shrugcount to 1 and setting the shrugat count to 0.          */
         $setUserVar[shrugc;1]
         $setUserVar[shrugac;0]
-        $if[$getUserVar[shrugdac]==undefined]
+        $if[$getUserVar[shrugdac]==undefined]/*          Given condition [3], if the user's shruggedat count is also undefined, the following code will run, setting it to 0.          */
             $setUserVar[shrugdac;0]
         $endIf
-        $sendMessage[{description: $username shrugs ... }
-{image:$randomText[SHRUGImageLink1.gif;SHRUGImageLink2.gif;SHRUGImageLink3.gif... etc.]}
+        $sendMessage[{description: $username shrugs ... }/*          given Condition[3], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+{image:$randomText[{image:$randomText[SHRUGImageLink1.gif;SHRUGImageLink2.gif;SHRUGImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
 {footer: $username has shrugged at others $getUserVar[shrugac] times and been shrugged at by others $getUserVar[shrugdac] times!}]
     $endelseif
-    $elseif[$message[1]==shrug&&$getUserVar[shrugc]!=undefined&&$mentioned[1]!=]
+    $elseif[$message[1]==shrug&&$getUserVar[shrugc]!=undefined&&$mentioned[1]!=]/*        Given that Conditions[1-3] are false, this condition, known as Condition[4] will be run, so long as the user shrugat count is undefined and the user has ALSO tagged someone to shrug at (using the regular @tag)        */
         $setUserVar[shrugc;$sum[$getUserVar[shrugc];1]]
-        $if[$getUserVar[shrugac]==undefined]
+        $if[$getUserVar[shrugac]==undefined]/*        Given Condition[4], this condition will run so long as the user shrugat count is undefined, setting it to 1        */
             $setUserVar[shrugac;1]
-            $else
+            $else/*      Given Condition[4], if the user shrugat count IS defined, the following code will be run, updating the shrugat count by adding one value to the var        */
                 $setUserVar[shrugac;$sum[$getUserVar[shrugac];1]]
         $endIf
-        $if[$getUserVar[shrugdac;$mentioned[1]]==undefined]
+        $if[$getUserVar[shrugdac;$mentioned[1]]==undefined]/*       Given Condition[4], if the shruggedat count of the person being tagged is undefined, the following code will run, setting it to 1        */
             $setUserVar[shrugdac;1;$mentioned[1]]
-            $else
+            $else/*       Given Condition[4], if the shruggedat count of the person being tagged IS defined, the following code will be run, updating the shruggedat var by adding one value to the var       */
                 $setUserVar[shrugdac;$sum[$getUserVar[shrugdac;$mentioned[1]];1];$mentioned[1]]
         $endIf
-        $if[$getUserVar[shrugdac]==undefined]
+        $if[$getUserVar[shrugdac]==undefined]/*         Given Condition[4]     I'M LEAVING OFF RIGHT HERE TO DO OTHER THINGS!         */
             $setUserVar[shrugdac;0]
         $endIf
         $sendMessage[{description: $username shrugs at $username[$mentioned[1]] ... }
