@@ -62,7 +62,7 @@ Condition[5] = User agreecount(Defined):   True && User Non-Mention Reply: True
 Condition[6] = User agreecount(Defined):   True && User Mention: False
 
 */
-$if[$message[1]==agree&&$getUserVar[agreec]==undefined&&$mentioned[1]!=]/*   This if condition is called Condition[1] and it is for when the user runs the agree command but has never agreed (verified by the $getUserVar[agreec] [agree count] being undefined) while also mentioning another user (to agree at) [fyi, the agreeac var is for counting how many times user has agreed at another], first setting the agree count and agreeat count of the user to 1    */
+$if[$message[1]==agree&&$getUserVar[agreec]==undefined&&$mentioned[1]!=]/*   This if condition is called Condition[1] and it is for when the user runs the agree command but has never agreed (verified by the $getUserVar[agreec] [agree count] being undefined) while also mentioning another user (to agree at) [fyi, the agreeac var is for counting how many times user has agreed with another], first setting the agree count and agreeat count of the user to 1    */
     $setUserVar[agreec;1]
     $setUserVar[agreeac;1]
     $if[$getUserVar[agreedac;$mentioned[1]]==undefined]/* given Condition[1], if the agreedat count for the person being mentioned is ALSO undefined, the following code will run, setting that count to 1   */
@@ -73,9 +73,9 @@ $if[$message[1]==agree&&$getUserVar[agreec]==undefined&&$mentioned[1]!=]/*   Thi
     $if[$getUserVar[agreedac]==undefined]/*    given Condition[1], this condition will check to see if the user performing the action has ever been agreedat before. If not, that count will be set to 0.    */
         $setUserVar[agreedac;0]
     $endIf
-    $sendMessage[{description: $username agrees at $username[$mentioned[1]] ... }/*    given Condition[1], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+    $sendMessage[{description: $username agrees with $username[$mentioned[1]] ... }/*    given Condition[1], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[ImageLink1.gif;ImageLink2.gif;ImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then COPY the links and ADD/PASTE them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has agreed at others $getUserVar[agreeac] times and been agreed at by others $getUserVar[agreedac] times!}]
+{footer: $username has agreed with others $getUserVar[agreeac] times and been agreed with by others $getUserVar[agreedac] times!}]
     $elseif[$message[1]==agree&&$getUserVar[agreec]==undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*      given that the Condition[1] is false, this condition, called Condition[2], will be run so long as the user agreing has an undefined agree count AND the non-mention reply individual is not the same person running the command. In other words, if you reply to a message but don't use a mention reply while using this command, this code will run, setting the user agree count and user agreeat count each to 1       */
         $setUserVar[agreec;1]
         $setUserVar[agreeac;1]
@@ -87,9 +87,9 @@ $if[$message[1]==agree&&$getUserVar[agreec]==undefined&&$mentioned[1]!=]/*   Thi
         $if[$getUserVar[agreedac]==undefined]/*      Given condition[2], if the User agreedat count is undefined, the following code will run, setting it to 0.       */
             $setUserVar[agreedac;0]
         $endIf
-        $sendMessage[{description: $username agrees at $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[2], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username agrees with $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[2], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[agreeImageLink1.gif;agreeImageLink2.gif;agreeImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has agreed at others $getUserVar[agreeac] times and been agreed at by others $getUserVar[agreedac] times!}]
+{footer: $username has agreed with others $getUserVar[agreeac] times and been agreed with by others $getUserVar[agreedac] times!}]
     $endelseif
     $elseif[$message[1]==agree&&$getUserVar[agreec]==undefined&&$mentioned[1]==]/*         Given that both Condition[1] and Condition[2] are false, this condition, known as Condition[3] will be run, so long as the user agreecount is undefined and user has also NOT mentioned another user to agree at, the following code will run, setting the agreecount to 1 and setting the agreeat count to 0.          */
         $setUserVar[agreec;1]
@@ -99,7 +99,7 @@ $if[$message[1]==agree&&$getUserVar[agreec]==undefined&&$mentioned[1]!=]/*   Thi
         $endIf
         $sendMessage[{description: $username agrees ... }/*          given Condition[3], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[agreeImageLink1.gif;agreeImageLink2.gif;agreeImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has agreed at others $getUserVar[agreeac] times and been agreed at by others $getUserVar[agreedac] times!}]
+{footer: $username has agreed with others $getUserVar[agreeac] times and been agreed with by others $getUserVar[agreedac] times!}]
     $endelseif
     $elseif[$message[1]==agree&&$getUserVar[agreec]!=undefined&&$mentioned[1]!=]/*        Given that Conditions[1-3] are false, this condition, known as Condition[4] will be run, so long as the user agreecount IS defined and the user has ALSO tagged someone to agree at (using either the regular @tag or a mentioned reply)        */
         $setUserVar[agreec;$sum[$getUserVar[agreec];1]]
@@ -116,9 +116,9 @@ $if[$message[1]==agree&&$getUserVar[agreec]==undefined&&$mentioned[1]!=]/*   Thi
         $if[$getUserVar[agreedac]==undefined]/*         Given Condition[4], the following code will run so long as the user agreeat count is undefined, setting it to 0.         */
             $setUserVar[agreedac;0]
         $endIf
-        $sendMessage[{description: $username agrees at $username[$mentioned[1]] ... }/*          given Condition[4], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username agrees with $username[$mentioned[1]] ... }/*          given Condition[4], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[agreeImageLink1.gif;agreeImageLink2.gif;agreeImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has agreed at others $getUserVar[agreeac] times and been agreed at by others $getUserVar[agreedac] times!}]
+{footer: $username has agreed with others $getUserVar[agreeac] times and been agreed with by others $getUserVar[agreedac] times!}]
     $endelseif
     $elseif[$message[1]==agree&&$getUserVar[agreec]!=undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*         Given that Conditions[1-4] are false, this condition, known as Condition[5] will be run so long as the user agreecount IS defined AND the user IS replying to someone who is NOT the original agreing user. In other words, if you reply to any message BESIDES your own message, but you HAVE agreed before, the following code will run, adding one value to the user agree count.           */
         $setUserVar[agreec;$sum[$getUserVar[agreec];1]]
@@ -127,9 +127,9 @@ $if[$message[1]==agree&&$getUserVar[agreec]==undefined&&$mentioned[1]!=]/*   Thi
             $else/*        However, if the user agreeat count IS defined, the following code will run, adding one value to the agreeat count.        */
                 $setUserVar[agreeac;$sum[$getUserVar[agreeac];1]]
         $endIf
-        $if[$getUserVar[agreedac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        Given Condition[5], if the user being agreed at has a agreedat count which IS undefined, the following code will run, setting it to 1.       */        */
+        $if[$getUserVar[agreedac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        Given Condition[5], if the user being agreed with has a agreedat count which IS undefined, the following code will run, setting it to 1.       */        */
             $setUserVar[agreedac;1;$msg[$channelid;$referencemessageid;author]]
-            $else/*        However, if the user being agreed at has a agreedat count which IS defined, the following code will run, adding one value to the agreedat count.         */
+            $else/*        However, if the user being agreed with has a agreedat count which IS defined, the following code will run, adding one value to the agreedat count.         */
                 $setUserVar[agreedac;$sum[$getUserVar[agreedac;$msg[$channelid;$referencemessageid;author]];1];$msg[$channelid;$referencemessageid;author]]
         $endIf
         $if[$getUserVar[agreedac]==undefined]/*           Given Condition[5], if the user agreedat count IS undefined, the following code will run, setting it to 0.         */
@@ -137,7 +137,7 @@ $if[$message[1]==agree&&$getUserVar[agreec]==undefined&&$mentioned[1]!=]/*   Thi
         $endIf
         $sendMessage[{description: $username agrees ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[agreeImageLink1.gif;agreeImageLink2.gif;agreeImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has agreed at others $getUserVar[agreeac] times and been agreed at by others $getUserVar[agreedac] times!}]
+{footer: $username has agreed with others $getUserVar[agreeac] times and been agreed with by others $getUserVar[agreedac] times!}]
     $endelseif
     $elseif[$message[1]==agree&&$getUserVar[agreec]!=undefined&&$mentioned[1]==]/*        Given that Conditions[1-5] are false, the following condition, known as Condition[6], will be run so long as the user agree count IS defined and user did NOT mention anyone, adding one value to the user agreecount.          */
         $setUserVar[agreec;$sum[$getUserVar[agreec];1]]
@@ -146,113 +146,113 @@ $if[$message[1]==agree&&$getUserVar[agreec]==undefined&&$mentioned[1]!=]/*   Thi
         $endIf
         $sendMessage[{description: $username agrees ... }/*          given Condition[6], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[agreeImageLink1.gif;agreeImageLink2.gif;agreeImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has agreed at others $getUserVar[agreeac] times and been agreed at by others $getUserVar[agreedac] times!}]
+{footer: $username has agreed with others $getUserVar[agreeac] times and been agreed with by others $getUserVar[agreedac] times!}]
     $endelseif
 $endIf
 /*endagrees*/
 /*
 
-Here is where the mad command begins:
+Here is where the angry action command begins:
 
 It is organized into conditions which are named Condition[1], Condition[2]. Condition[3], and so on and so forth. 
 
-Condition[1] = User madcount(Undefined): True && User Mention: True
-Condition[2] = User madcount(Undefined): True && User Non-Mention Reply: True
-Condition[3] = User madcount(Undefined): True && User Mention: False
+Condition[1] = User angercount(Undefined): True && User Mention: True
+Condition[2] = User angercount(Undefined): True && User Non-Mention Reply: True
+Condition[3] = User angercount(Undefined): True && User Mention: False
 ...............................................................................
-Condition[4] = User madcount(Defined):   True && User Mention: True
-Condition[5] = User madcount(Defined):   True && User Non-Mention Reply: True
-Condition[6] = User madcount(Defined):   True && User Mention: False
+Condition[4] = User angercount(Defined):   True && User Mention: True
+Condition[5] = User angercount(Defined):   True && User Non-Mention Reply: True
+Condition[6] = User angercount(Defined):   True && User Mention: False
 
 */
-$if[$message[1]==mad&&$getUserVar[madc]==undefined&&$mentioned[1]!=]/*   This if condition is called Condition[1] and it is for when the user runs the mad command but has never angered (verified by the $getUserVar[madc] [mad count] being undefined) while also mentioning another user (to mad at) [fyi, the madac var is for counting how many times user has angered at another], first setting the mad count and madat count of the user to 1    */
-    $setUserVar[madc;1]
-    $setUserVar[madac;1]
-    $if[$getUserVar[angeredac;$mentioned[1]]==undefined]/* given Condition[1], if the angeredat count for the person being mentioned is ALSO undefined, the following code will run, setting that count to 1   */
-        $setUserVar[angeredac;1;$mentioned[1]]
-        $else/*       If the person being mentioned has a angeredat count which IS defined, then the following code will run, ending the condition for when the person being mentioned has a angeredat count which is ALSO undefined by adding a angeredat count to the already defined count variable     */
-        $setUserVar[angeredac;$sum[$getUserVar[angeredac;$mentioned[1]];1];$mentioned[1]]
+$if[$message[1]==angry&&$getUserVar[angerc]==undefined&&$mentioned[1]!=]/*   This if condition is called Condition[1] and it is for when the user runs the anger command but has never angerd (verified by the $getUserVar[angerc] [anger count] being undefined) while also mentioning another user (to anger at) [fyi, the angerac var is for counting how many times user has angerd at another], first setting the anger count and angerat count of the user to 1    */
+    $setUserVar[angerc;1]
+    $setUserVar[angerac;1]
+    $if[$getUserVar[angerdac;$mentioned[1]]==undefined]/* given Condition[1], if the angerdat count for the person being mentioned is ALSO undefined, the following code will run, setting that count to 1   */
+        $setUserVar[angerdac;1;$mentioned[1]]
+        $else/*       If the person being mentioned has a angerdat count which IS defined, then the following code will run, ending the condition for when the person being mentioned has a angerdat count which is ALSO undefined by adding a angerdat count to the already defined count variable     */
+        $setUserVar[angerdac;$sum[$getUserVar[angerdac;$mentioned[1]];1];$mentioned[1]]
     $endIf
-    $if[$getUserVar[angeredac]==undefined]/*    given Condition[1], this condition will check to see if the user performing the action has ever been angeredat before. If not, that count will be set to 0.    */
-        $setUserVar[angeredac;0]
+    $if[$getUserVar[angerdac]==undefined]/*    given Condition[1], this condition will check to see if the user performing the action has ever been angerdat before. If not, that count will be set to 0.    */
+        $setUserVar[angerdac;0]
     $endIf
-    $sendMessage[{description: $username mads at $username[$mentioned[1]] ... }/*    given Condition[1], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+    $sendMessage[{description: $username is angry with $username[$mentioned[1]] ... }/*    given Condition[1], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[ImageLink1.gif;ImageLink2.gif;ImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then COPY the links and ADD/PASTE them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has angered at others $getUserVar[madac] times and been angered at by others $getUserVar[angeredac] times!}]
-    $elseif[$message[1]==mad&&$getUserVar[madc]==undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*      given that the Condition[1] is false, this condition, called Condition[2], will be run so long as the user agreing has an undefined mad count AND the non-mention reply individual is not the same person running the command. In other words, if you reply to a message but don't use a mention reply while using this command, this code will run, setting the user mad count and user madat count each to 1       */
-        $setUserVar[madc;1]
-        $setUserVar[madac;1]
-        $if[$getUserVar[angeredac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        given Condition[2], if the angeredat count of the person being replied (without a mention) to is undefined, the following code will run, setting the angeredat count to 1       */
-            $setUserVar[angeredac;1;$msg[$channelid;$referencemessageid;author]]
-            $else/*      But, if the angeredat count of the user being replied (without a mention) to IS defined, the following code will run, ending the condition for when the person being replied (without a mention) to has a angeredat count which is undefined by adding a count to this user's already pre-defined angeredat count       */ 
-                $setUserVar[angeredac;$sum[$getUserVar[angeredac;$msg[$channelid;$referencemessageid;author]];1];$msg[$channelid;$referencemessageid;author]]
+{footer: $username has been angry with others $getUserVar[angerac] times and made others angry $getUserVar[angerdac] times!}]
+    $elseif[$message[1]==angry&&$getUserVar[angerc]==undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*      given that the Condition[1] is false, this condition, called Condition[2], will be run so long as the user agreing has an undefined anger count AND the non-mention reply individual is not the same person running the command. In other words, if you reply to a message but don't use a mention reply while using this command, this code will run, setting the user anger count and user angerat count each to 1       */
+        $setUserVar[angerc;1]
+        $setUserVar[angerac;1]
+        $if[$getUserVar[angerdac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        given Condition[2], if the angerdat count of the person being replied (without a mention) to is undefined, the following code will run, setting the angerdat count to 1       */
+            $setUserVar[angerdac;1;$msg[$channelid;$referencemessageid;author]]
+            $else/*      But, if the angerdat count of the user being replied (without a mention) to IS defined, the following code will run, ending the condition for when the person being replied (without a mention) to has a angerdat count which is undefined by adding a count to this user's already pre-defined angerdat count       */ 
+                $setUserVar[angerdac;$sum[$getUserVar[angerdac;$msg[$channelid;$referencemessageid;author]];1];$msg[$channelid;$referencemessageid;author]]
         $endIf
-        $if[$getUserVar[angeredac]==undefined]/*      Given condition[2], if the User angeredat count is undefined, the following code will run, setting it to 0.       */
-            $setUserVar[angeredac;0]
+        $if[$getUserVar[angerdac]==undefined]/*      Given condition[2], if the User angerdat count is undefined, the following code will run, setting it to 0.       */
+            $setUserVar[angerdac;0]
         $endIf
-        $sendMessage[{description: $username mads at $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[2], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
-{image:$randomText[{image:$randomText[madImageLink1.gif;madImageLink2.gif;madImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has angered at others $getUserVar[madac] times and been angered at by others $getUserVar[angeredac] times!}]
+        $sendMessage[{description: $username is angry with $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[2], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+{image:$randomText[{image:$randomText[angerImageLink1.gif;angerImageLink2.gif;angerImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
+{footer: $username has been angry with others $getUserVar[angerac] times and made others angry $getUserVar[angerdac] times!}]
     $endelseif
-    $elseif[$message[1]==mad&&$getUserVar[madc]==undefined&&$mentioned[1]==]/*         Given that both Condition[1] and Condition[2] are false, this condition, known as Condition[3] will be run, so long as the user madcount is undefined and user has also NOT mentioned another user to mad at, the following code will run, setting the madcount to 1 and setting the madat count to 0.          */
-        $setUserVar[madc;1]
-        $setUserVar[madac;0]
-        $if[$getUserVar[angeredac]==undefined]/*          Given condition [3], if the user's angeredat count is also undefined, the following code will run, setting it to 0.          */
-            $setUserVar[angeredac;0]
+    $elseif[$message[1]==angry&&$getUserVar[angerc]==undefined&&$mentioned[1]==]/*         Given that both Condition[1] and Condition[2] are false, this condition, known as Condition[3] will be run, so long as the user angercount is undefined and user has also NOT mentioned another user to anger at, the following code will run, setting the angercount to 1 and setting the angerat count to 0.          */
+        $setUserVar[angerc;1]
+        $setUserVar[angerac;0]
+        $if[$getUserVar[angerdac]==undefined]/*          Given condition [3], if the user's angerdat count is also undefined, the following code will run, setting it to 0.          */
+            $setUserVar[angerdac;0]
         $endIf
-        $sendMessage[{description: $username mads ... }/*          given Condition[3], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
-{image:$randomText[{image:$randomText[madImageLink1.gif;madImageLink2.gif;madImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has angered at others $getUserVar[madac] times and been angered at by others $getUserVar[angeredac] times!}]
+        $sendMessage[{description: $username angers ... }/*          given Condition[3], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+{image:$randomText[{image:$randomText[angerImageLink1.gif;angerImageLink2.gif;angerImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
+{footer: $username has been angry with others $getUserVar[angerac] times and made others angry $getUserVar[angerdac] times!}]
     $endelseif
-    $elseif[$message[1]==mad&&$getUserVar[madc]!=undefined&&$mentioned[1]!=]/*        Given that Conditions[1-3] are false, this condition, known as Condition[4] will be run, so long as the user madcount IS defined and the user has ALSO tagged someone to mad at (using either the regular @tag or a mentioned reply)        */
-        $setUserVar[madc;$sum[$getUserVar[madc];1]]
-        $if[$getUserVar[madac]==undefined]/*        Given Condition[4], this condition will run so long as the user madat count is undefined, setting it to 1        */
-            $setUserVar[madac;1]
-            $else/*      Given Condition[4], if the user madat count IS defined, the following code will be run, updating the madat count by adding one value to the var        */
-                $setUserVar[madac;$sum[$getUserVar[madac];1]]
+    $elseif[$message[1]==angry&&$getUserVar[angerc]!=undefined&&$mentioned[1]!=]/*        Given that Conditions[1-3] are false, this condition, known as Condition[4] will be run, so long as the user angercount IS defined and the user has ALSO tagged someone to anger at (using either the regular @tag or a mentioned reply)        */
+        $setUserVar[angerc;$sum[$getUserVar[angerc];1]]
+        $if[$getUserVar[angerac]==undefined]/*        Given Condition[4], this condition will run so long as the user angerat count is undefined, setting it to 1        */
+            $setUserVar[angerac;1]
+            $else/*      Given Condition[4], if the user angerat count IS defined, the following code will be run, updating the angerat count by adding one value to the var        */
+                $setUserVar[angerac;$sum[$getUserVar[angerac];1]]
         $endIf
-        $if[$getUserVar[angeredac;$mentioned[1]]==undefined]/*       Given Condition[4], if the angeredat count of the person being tagged is undefined, the following code will run, setting it to 1        */
-            $setUserVar[angeredac;1;$mentioned[1]]
-            $else/*       Given Condition[4], if the angeredat count of the person being tagged IS defined, the following code will be run, updating the angeredat var by adding one value to the var       */
-                $setUserVar[angeredac;$sum[$getUserVar[angeredac;$mentioned[1]];1];$mentioned[1]]
+        $if[$getUserVar[angerdac;$mentioned[1]]==undefined]/*       Given Condition[4], if the angerdat count of the person being tagged is undefined, the following code will run, setting it to 1        */
+            $setUserVar[angerdac;1;$mentioned[1]]
+            $else/*       Given Condition[4], if the angerdat count of the person being tagged IS defined, the following code will be run, updating the angerdat var by adding one value to the var       */
+                $setUserVar[angerdac;$sum[$getUserVar[angerdac;$mentioned[1]];1];$mentioned[1]]
         $endIf
-        $if[$getUserVar[angeredac]==undefined]/*         Given Condition[4], the following code will run so long as the user madat count is undefined, setting it to 0.         */
-            $setUserVar[angeredac;0]
+        $if[$getUserVar[angerdac]==undefined]/*         Given Condition[4], the following code will run so long as the user angerat count is undefined, setting it to 0.         */
+            $setUserVar[angerdac;0]
         $endIf
-        $sendMessage[{description: $username mads at $username[$mentioned[1]] ... }/*          given Condition[4], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
-{image:$randomText[{image:$randomText[madImageLink1.gif;madImageLink2.gif;madImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has angered at others $getUserVar[madac] times and been angered at by others $getUserVar[angeredac] times!}]
+        $sendMessage[{description: $username is angry with $username[$mentioned[1]] ... }/*          given Condition[4], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+{image:$randomText[{image:$randomText[angerImageLink1.gif;angerImageLink2.gif;angerImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
+{footer: $username has been angry with others $getUserVar[angerac] times and made others angry $getUserVar[angerdac] times!}]
     $endelseif
-    $elseif[$message[1]==mad&&$getUserVar[madc]!=undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*         Given that Conditions[1-4] are false, this condition, known as Condition[5] will be run so long as the user madcount IS defined AND the user IS replying to someone who is NOT the original agreing user. In other words, if you reply to any message BESIDES your own message, but you HAVE angered before, the following code will run, adding one value to the user mad count.           */
-        $setUserVar[madc;$sum[$getUserVar[madc];1]]
-        $if[$getUserVar[madac]==undefined]/*        Given Condition[5], if the user madat count is undefined, the following code will run, setting it to 1.        */
-            $setUserVar[madac;1]
-            $else/*        However, if the user madat count IS defined, the following code will run, adding one value to the madat count.        */
-                $setUserVar[madac;$sum[$getUserVar[madac];1]]
+    $elseif[$message[1]==angry&&$getUserVar[angerc]!=undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*         Given that Conditions[1-4] are false, this condition, known as Condition[5] will be run so long as the user angercount IS defined AND the user IS replying to someone who is NOT the original agreing user. In other words, if you reply to any message BESIDES your own message, but you HAVE angerd before, the following code will run, adding one value to the user anger count.           */
+        $setUserVar[angerc;$sum[$getUserVar[angerc];1]]
+        $if[$getUserVar[angerac]==undefined]/*        Given Condition[5], if the user angerat count is undefined, the following code will run, setting it to 1.        */
+            $setUserVar[angerac;1]
+            $else/*        However, if the user angerat count IS defined, the following code will run, adding one value to the angerat count.        */
+                $setUserVar[angerac;$sum[$getUserVar[angerac];1]]
         $endIf
-        $if[$getUserVar[angeredac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        Given Condition[5], if the user being angered at has a angeredat count which IS undefined, the following code will run, setting it to 1.       */        */
-            $setUserVar[angeredac;1;$msg[$channelid;$referencemessageid;author]]
-            $else/*        However, if the user being angered at has a angeredat count which IS defined, the following code will run, adding one value to the angeredat count.         */
-                $setUserVar[angeredac;$sum[$getUserVar[angeredac;$msg[$channelid;$referencemessageid;author]];1];$msg[$channelid;$referencemessageid;author]]
+        $if[$getUserVar[angerdac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        Given Condition[5], if the user being angerd at has a angerdat count which IS undefined, the following code will run, setting it to 1.       */        */
+            $setUserVar[angerdac;1;$msg[$channelid;$referencemessageid;author]]
+            $else/*        However, if the user being angerd at has a angerdat count which IS defined, the following code will run, adding one value to the angerdat count.         */
+                $setUserVar[angerdac;$sum[$getUserVar[angerdac;$msg[$channelid;$referencemessageid;author]];1];$msg[$channelid;$referencemessageid;author]]
         $endIf
-        $if[$getUserVar[angeredac]==undefined]/*           Given Condition[5], if the user angeredat count IS undefined, the following code will run, setting it to 0.         */
-            $setUserVar[angeredac;0]
+        $if[$getUserVar[angerdac]==undefined]/*           Given Condition[5], if the user angerdat count IS undefined, the following code will run, setting it to 0.         */
+            $setUserVar[angerdac;0]
         $endIf
-        $sendMessage[{description: $username mads ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
-{image:$randomText[{image:$randomText[madImageLink1.gif;madImageLink2.gif;madImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has angered at others $getUserVar[madac] times and been angered at by others $getUserVar[angeredac] times!}]
+        $sendMessage[{description: $username angers ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+{image:$randomText[{image:$randomText[angerImageLink1.gif;angerImageLink2.gif;angerImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
+{footer: $username has been angry with others $getUserVar[angerac] times and made others angry $getUserVar[angerdac] times!}]
     $endelseif
-    $elseif[$message[1]==mad&&$getUserVar[madc]!=undefined&&$mentioned[1]==]/*        Given that Conditions[1-5] are false, the following condition, known as Condition[6], will be run so long as the user mad count IS defined and user did NOT mention anyone, adding one value to the user madcount.          */
-        $setUserVar[madc;$sum[$getUserVar[madc];1]]
-        $if[$getUserVar[angeredac]==undefined]/*         Given Condition[6], if the user angeredat count is undefined, the following code will be run, setting that count to 0.        */
-            $setUserVar[angeredac;0]
+    $elseif[$message[1]==angry&&$getUserVar[angerc]!=undefined&&$mentioned[1]==]/*        Given that Conditions[1-5] are false, the following condition, known as Condition[6], will be run so long as the user anger count IS defined and user did NOT mention anyone, adding one value to the user angercount.          */
+        $setUserVar[angerc;$sum[$getUserVar[angerc];1]]
+        $if[$getUserVar[angerdac]==undefined]/*         Given Condition[6], if the user angerdat count is undefined, the following code will be run, setting that count to 0.        */
+            $setUserVar[angerdac;0]
         $endIf
-        $sendMessage[{description: $username mads ... }/*          given Condition[6], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
-{image:$randomText[{image:$randomText[madImageLink1.gif;madImageLink2.gif;madImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has angered at others $getUserVar[madac] times and been angered at by others $getUserVar[angeredac] times!}]
+        $sendMessage[{description: $username angers ... }/*          given Condition[6], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+{image:$randomText[{image:$randomText[angerImageLink1.gif;angerImageLink2.gif;angerImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
+{footer: $username has been angry with others $getUserVar[angerac] times and made others angry $getUserVar[angerdac] times!}]
     $endelseif
 $endIf
-/*endmads*/
+/*endangers*/
 /*
 
 Here is where the apology command begins:
@@ -268,7 +268,7 @@ Condition[5] = User apologycount(Defined):   True && User Non-Mention Reply: Tru
 Condition[6] = User apologycount(Defined):   True && User Mention: False
 
 */
-$if[$message[1]==apology&&$getUserVar[apologyc]==undefined&&$mentioned[1]!=]/*   This if condition is called Condition[1] and it is for when the user runs the apology command but has never apologized (verified by the $getUserVar[apologyc] [apology count] being undefined) while also mentioning another user (to apology at) [fyi, the apologizeac var is for counting how many times user has apologized at another], first setting the apology count and apologyat count of the user to 1    */
+$if[$message[1]==apology&&$getUserVar[apologyc]==undefined&&$mentioned[1]!=]/*   This if condition is called Condition[1] and it is for when the user runs the apology command but has never apologized (verified by the $getUserVar[apologyc] [apology count] being undefined) while also mentioning another user (to apology at) [fyi, the apologizeac var is for counting how many times user has apologized to another], first setting the apology count and apologyat count of the user to 1    */
     $setUserVar[apologyc;1]
     $setUserVar[apologizeac;1]
     $if[$getUserVar[apologizedac;$mentioned[1]]==undefined]/* given Condition[1], if the apologizedat count for the person being mentioned is ALSO undefined, the following code will run, setting that count to 1   */
@@ -279,9 +279,9 @@ $if[$message[1]==apology&&$getUserVar[apologyc]==undefined&&$mentioned[1]!=]/*  
     $if[$getUserVar[apologizedac]==undefined]/*    given Condition[1], this condition will check to see if the user performing the action has ever been apologizedat before. If not, that count will be set to 0.    */
         $setUserVar[apologizedac;0]
     $endIf
-    $sendMessage[{description: $username apologys at $username[$mentioned[1]] ... }/*    given Condition[1], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+    $sendMessage[{description: $username offers an apology to $username[$mentioned[1]] ... }/*    given Condition[1], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[ImageLink1.gif;ImageLink2.gif;ImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then COPY the links and ADD/PASTE them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has apologized at others $getUserVar[apologizeac] times and been apologized at by others $getUserVar[apologizedac] times!}]
+{footer: $username has apologized to others $getUserVar[apologizeac] times and been apologized to by others $getUserVar[apologizedac] times!}]
     $elseif[$message[1]==apology&&$getUserVar[apologyc]==undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*      given that the Condition[1] is false, this condition, called Condition[2], will be run so long as the user agreing has an undefined apology count AND the non-mention reply individual is not the same person running the command. In other words, if you reply to a message but don't use a mention reply while using this command, this code will run, setting the user apology count and user apologyat count each to 1       */
         $setUserVar[apologyc;1]
         $setUserVar[apologizeac;1]
@@ -293,9 +293,9 @@ $if[$message[1]==apology&&$getUserVar[apologyc]==undefined&&$mentioned[1]!=]/*  
         $if[$getUserVar[apologizedac]==undefined]/*      Given condition[2], if the User apologizedat count is undefined, the following code will run, setting it to 0.       */
             $setUserVar[apologizedac;0]
         $endIf
-        $sendMessage[{description: $username apologys at $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[2], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username offers an apology to $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[2], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[apologyImageLink1.gif;apologyImageLink2.gif;apologyImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has apologized at others $getUserVar[apologizeac] times and been apologized at by others $getUserVar[apologizedac] times!}]
+{footer: $username has apologized to others $getUserVar[apologizeac] times and been apologized to by others $getUserVar[apologizedac] times!}]
     $endelseif
     $elseif[$message[1]==apology&&$getUserVar[apologyc]==undefined&&$mentioned[1]==]/*         Given that both Condition[1] and Condition[2] are false, this condition, known as Condition[3] will be run, so long as the user apologycount is undefined and user has also NOT mentioned another user to apology at, the following code will run, setting the apologycount to 1 and setting the apologyat count to 0.          */
         $setUserVar[apologyc;1]
@@ -305,7 +305,7 @@ $if[$message[1]==apology&&$getUserVar[apologyc]==undefined&&$mentioned[1]!=]/*  
         $endIf
         $sendMessage[{description: $username apologys ... }/*          given Condition[3], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[apologyImageLink1.gif;apologyImageLink2.gif;apologyImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has apologized at others $getUserVar[apologizeac] times and been apologized at by others $getUserVar[apologizedac] times!}]
+{footer: $username has apologized to others $getUserVar[apologizeac] times and been apologized to by others $getUserVar[apologizedac] times!}]
     $endelseif
     $elseif[$message[1]==apology&&$getUserVar[apologyc]!=undefined&&$mentioned[1]!=]/*        Given that Conditions[1-3] are false, this condition, known as Condition[4] will be run, so long as the user apologycount IS defined and the user has ALSO tagged someone to apology at (using either the regular @tag or a mentioned reply)        */
         $setUserVar[apologyc;$sum[$getUserVar[apologyc];1]]
@@ -322,9 +322,9 @@ $if[$message[1]==apology&&$getUserVar[apologyc]==undefined&&$mentioned[1]!=]/*  
         $if[$getUserVar[apologizedac]==undefined]/*         Given Condition[4], the following code will run so long as the user apologyat count is undefined, setting it to 0.         */
             $setUserVar[apologizedac;0]
         $endIf
-        $sendMessage[{description: $username apologys at $username[$mentioned[1]] ... }/*          given Condition[4], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username offers an apology to $username[$mentioned[1]] ... }/*          given Condition[4], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[apologyImageLink1.gif;apologyImageLink2.gif;apologyImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has apologized at others $getUserVar[apologizeac] times and been apologized at by others $getUserVar[apologizedac] times!}]
+{footer: $username has apologized to others $getUserVar[apologizeac] times and been apologized to by others $getUserVar[apologizedac] times!}]
     $endelseif
     $elseif[$message[1]==apology&&$getUserVar[apologyc]!=undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*         Given that Conditions[1-4] are false, this condition, known as Condition[5] will be run so long as the user apologycount IS defined AND the user IS replying to someone who is NOT the original agreing user. In other words, if you reply to any message BESIDES your own message, but you HAVE apologized before, the following code will run, adding one value to the user apology count.           */
         $setUserVar[apologyc;$sum[$getUserVar[apologyc];1]]
@@ -333,9 +333,9 @@ $if[$message[1]==apology&&$getUserVar[apologyc]==undefined&&$mentioned[1]!=]/*  
             $else/*        However, if the user apologyat count IS defined, the following code will run, adding one value to the apologyat count.        */
                 $setUserVar[apologizeac;$sum[$getUserVar[apologizeac];1]]
         $endIf
-        $if[$getUserVar[apologizedac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        Given Condition[5], if the user being apologized at has a apologizedat count which IS undefined, the following code will run, setting it to 1.       */        */
+        $if[$getUserVar[apologizedac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        Given Condition[5], if the user being apologized to has a apologizedat count which IS undefined, the following code will run, setting it to 1.       */        */
             $setUserVar[apologizedac;1;$msg[$channelid;$referencemessageid;author]]
-            $else/*        However, if the user being apologized at has a apologizedat count which IS defined, the following code will run, adding one value to the apologizedat count.         */
+            $else/*        However, if the user being apologized to has a apologizedat count which IS defined, the following code will run, adding one value to the apologizedat count.         */
                 $setUserVar[apologizedac;$sum[$getUserVar[apologizedac;$msg[$channelid;$referencemessageid;author]];1];$msg[$channelid;$referencemessageid;author]]
         $endIf
         $if[$getUserVar[apologizedac]==undefined]/*           Given Condition[5], if the user apologizedat count IS undefined, the following code will run, setting it to 0.         */
@@ -343,7 +343,7 @@ $if[$message[1]==apology&&$getUserVar[apologyc]==undefined&&$mentioned[1]!=]/*  
         $endIf
         $sendMessage[{description: $username apologys ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[apologyImageLink1.gif;apologyImageLink2.gif;apologyImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has apologized at others $getUserVar[apologizeac] times and been apologized at by others $getUserVar[apologizedac] times!}]
+{footer: $username has apologized to others $getUserVar[apologizeac] times and been apologized to by others $getUserVar[apologizedac] times!}]
     $endelseif
     $elseif[$message[1]==apology&&$getUserVar[apologyc]!=undefined&&$mentioned[1]==]/*        Given that Conditions[1-5] are false, the following condition, known as Condition[6], will be run so long as the user apology count IS defined and user did NOT mention anyone, adding one value to the user apologycount.          */
         $setUserVar[apologyc;$sum[$getUserVar[apologyc];1]]
@@ -352,7 +352,7 @@ $if[$message[1]==apology&&$getUserVar[apologyc]==undefined&&$mentioned[1]!=]/*  
         $endIf
         $sendMessage[{description: $username apologys ... }/*          given Condition[6], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[apologyImageLink1.gif;apologyImageLink2.gif;apologyImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has apologized at others $getUserVar[apologizeac] times and been apologized at by others $getUserVar[apologizedac] times!}]
+{footer: $username has apologized to others $getUserVar[apologizeac] times and been apologized to by others $getUserVar[apologizedac] times!}]
     $endelseif
 $endIf
 /*endapologys*/
@@ -371,7 +371,7 @@ Condition[5] = User attackcount(Defined):   True && User Non-Mention Reply: True
 Condition[6] = User attackcount(Defined):   True && User Mention: False
 
 */
-$if[$message[1]==attack&&$getUserVar[attackc]==undefined&&$mentioned[1]!=]/*   This if condition is called Condition[1] and it is for when the user runs the attack command but has never attackd (verified by the $getUserVar[attackc] [attack count] being undefined) while also mentioning another user (to attack at) [fyi, the attackac var is for counting how many times user has attackd at another], first setting the attack count and attackat count of the user to 1    */
+$if[$message[1]==attack&&$getUserVar[attackc]==undefined&&$mentioned[1]!=]/*   This if condition is called Condition[1] and it is for when the user runs the attack command but has never attackd (verified by the $getUserVar[attackc] [attack count] being undefined) while also mentioning another user (to attack at) [fyi, the attackac var is for counting how many times user has attacked another], first setting the attack count and attackat count of the user to 1    */
     $setUserVar[attackc;1]
     $setUserVar[attackac;1]
     $if[$getUserVar[attackdac;$mentioned[1]]==undefined]/* given Condition[1], if the attackdat count for the person being mentioned is ALSO undefined, the following code will run, setting that count to 1   */
@@ -382,9 +382,9 @@ $if[$message[1]==attack&&$getUserVar[attackc]==undefined&&$mentioned[1]!=]/*   T
     $if[$getUserVar[attackdac]==undefined]/*    given Condition[1], this condition will check to see if the user performing the action has ever been attackdat before. If not, that count will be set to 0.    */
         $setUserVar[attackdac;0]
     $endIf
-    $sendMessage[{description: $username attacks at $username[$mentioned[1]] ... }/*    given Condition[1], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+    $sendMessage[{description: $username attacks $username[$mentioned[1]] ... }/*    given Condition[1], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[ImageLink1.gif;ImageLink2.gif;ImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then COPY the links and ADD/PASTE them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has attackd at others $getUserVar[attackac] times and been attackd at by others $getUserVar[attackdac] times!}]
+{footer: $username has attacked others $getUserVar[attackac] times and been attacked by others $getUserVar[attackdac] times!}]
     $elseif[$message[1]==attack&&$getUserVar[attackc]==undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*      given that the Condition[1] is false, this condition, called Condition[2], will be run so long as the user agreing has an undefined attack count AND the non-mention reply individual is not the same person running the command. In other words, if you reply to a message but don't use a mention reply while using this command, this code will run, setting the user attack count and user attackat count each to 1       */
         $setUserVar[attackc;1]
         $setUserVar[attackac;1]
@@ -396,9 +396,9 @@ $if[$message[1]==attack&&$getUserVar[attackc]==undefined&&$mentioned[1]!=]/*   T
         $if[$getUserVar[attackdac]==undefined]/*      Given condition[2], if the User attackdat count is undefined, the following code will run, setting it to 0.       */
             $setUserVar[attackdac;0]
         $endIf
-        $sendMessage[{description: $username attacks at $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[2], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username attacks $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[2], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[attackImageLink1.gif;attackImageLink2.gif;attackImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has attackd at others $getUserVar[attackac] times and been attackd at by others $getUserVar[attackdac] times!}]
+{footer: $username has attacked others $getUserVar[attackac] times and been attacked by others $getUserVar[attackdac] times!}]
     $endelseif
     $elseif[$message[1]==attack&&$getUserVar[attackc]==undefined&&$mentioned[1]==]/*         Given that both Condition[1] and Condition[2] are false, this condition, known as Condition[3] will be run, so long as the user attackcount is undefined and user has also NOT mentioned another user to attack at, the following code will run, setting the attackcount to 1 and setting the attackat count to 0.          */
         $setUserVar[attackc;1]
@@ -408,7 +408,7 @@ $if[$message[1]==attack&&$getUserVar[attackc]==undefined&&$mentioned[1]!=]/*   T
         $endIf
         $sendMessage[{description: $username attacks ... }/*          given Condition[3], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[attackImageLink1.gif;attackImageLink2.gif;attackImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has attackd at others $getUserVar[attackac] times and been attackd at by others $getUserVar[attackdac] times!}]
+{footer: $username has attacked others $getUserVar[attackac] times and been attacked by others $getUserVar[attackdac] times!}]
     $endelseif
     $elseif[$message[1]==attack&&$getUserVar[attackc]!=undefined&&$mentioned[1]!=]/*        Given that Conditions[1-3] are false, this condition, known as Condition[4] will be run, so long as the user attackcount IS defined and the user has ALSO tagged someone to attack at (using either the regular @tag or a mentioned reply)        */
         $setUserVar[attackc;$sum[$getUserVar[attackc];1]]
@@ -425,9 +425,9 @@ $if[$message[1]==attack&&$getUserVar[attackc]==undefined&&$mentioned[1]!=]/*   T
         $if[$getUserVar[attackdac]==undefined]/*         Given Condition[4], the following code will run so long as the user attackat count is undefined, setting it to 0.         */
             $setUserVar[attackdac;0]
         $endIf
-        $sendMessage[{description: $username attacks at $username[$mentioned[1]] ... }/*          given Condition[4], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username attacks $username[$mentioned[1]] ... }/*          given Condition[4], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[attackImageLink1.gif;attackImageLink2.gif;attackImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has attackd at others $getUserVar[attackac] times and been attackd at by others $getUserVar[attackdac] times!}]
+{footer: $username has attacked others $getUserVar[attackac] times and been attacked by others $getUserVar[attackdac] times!}]
     $endelseif
     $elseif[$message[1]==attack&&$getUserVar[attackc]!=undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*         Given that Conditions[1-4] are false, this condition, known as Condition[5] will be run so long as the user attackcount IS defined AND the user IS replying to someone who is NOT the original agreing user. In other words, if you reply to any message BESIDES your own message, but you HAVE attackd before, the following code will run, adding one value to the user attack count.           */
         $setUserVar[attackc;$sum[$getUserVar[attackc];1]]
@@ -436,9 +436,9 @@ $if[$message[1]==attack&&$getUserVar[attackc]==undefined&&$mentioned[1]!=]/*   T
             $else/*        However, if the user attackat count IS defined, the following code will run, adding one value to the attackat count.        */
                 $setUserVar[attackac;$sum[$getUserVar[attackac];1]]
         $endIf
-        $if[$getUserVar[attackdac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        Given Condition[5], if the user being attackd at has a attackdat count which IS undefined, the following code will run, setting it to 1.       */        */
+        $if[$getUserVar[attackdac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        Given Condition[5], if the user being attacked has a attackdat count which IS undefined, the following code will run, setting it to 1.       */        */
             $setUserVar[attackdac;1;$msg[$channelid;$referencemessageid;author]]
-            $else/*        However, if the user being attackd at has a attackdat count which IS defined, the following code will run, adding one value to the attackdat count.         */
+            $else/*        However, if the user being attacked has a attackdat count which IS defined, the following code will run, adding one value to the attackdat count.         */
                 $setUserVar[attackdac;$sum[$getUserVar[attackdac;$msg[$channelid;$referencemessageid;author]];1];$msg[$channelid;$referencemessageid;author]]
         $endIf
         $if[$getUserVar[attackdac]==undefined]/*           Given Condition[5], if the user attackdat count IS undefined, the following code will run, setting it to 0.         */
@@ -446,7 +446,7 @@ $if[$message[1]==attack&&$getUserVar[attackc]==undefined&&$mentioned[1]!=]/*   T
         $endIf
         $sendMessage[{description: $username attacks ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[attackImageLink1.gif;attackImageLink2.gif;attackImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has attackd at others $getUserVar[attackac] times and been attackd at by others $getUserVar[attackdac] times!}]
+{footer: $username has attacked others $getUserVar[attackac] times and been attacked by others $getUserVar[attackdac] times!}]
     $endelseif
     $elseif[$message[1]==attack&&$getUserVar[attackc]!=undefined&&$mentioned[1]==]/*        Given that Conditions[1-5] are false, the following condition, known as Condition[6], will be run so long as the user attack count IS defined and user did NOT mention anyone, adding one value to the user attackcount.          */
         $setUserVar[attackc;$sum[$getUserVar[attackc];1]]
@@ -455,7 +455,7 @@ $if[$message[1]==attack&&$getUserVar[attackc]==undefined&&$mentioned[1]!=]/*   T
         $endIf
         $sendMessage[{description: $username attacks ... }/*          given Condition[6], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[attackImageLink1.gif;attackImageLink2.gif;attackImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has attackd at others $getUserVar[attackac] times and been attackd at by others $getUserVar[attackdac] times!}]
+{footer: $username has attacked others $getUserVar[attackac] times and been attacked by others $getUserVar[attackdac] times!}]
     $endelseif
 $endIf
 /*endattacks*/
