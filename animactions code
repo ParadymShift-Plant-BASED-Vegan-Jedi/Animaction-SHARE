@@ -485,9 +485,9 @@ $if[$message[1]==ban&&$getUserVar[banc]==undefined&&$mentioned[1]!=]/*   This if
     $if[$getUserVar[bandac]==undefined]/*    given Condition[1], this condition will check to see if the user performing the action has ever been bandat before. If not, that count will be set to 0.    */
         $setUserVar[bandac;0]
     $endIf
-    $sendMessage[{description: $username bans at $username[$mentioned[1]] ... }/*    given Condition[1], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+    $sendMessage[{description: $username drops the ban hammer on $username[$mentioned[1]] ... }/*    given Condition[1], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[ImageLink1.gif;ImageLink2.gif;ImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then COPY the links and ADD/PASTE them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has band at others $getUserVar[banac] times and been band at by others $getUserVar[bandac] times!}]
+{footer: $username has dropped the ban hammer on others $getUserVar[banac] times and had the ban hammer dropped on emself by others $getUserVar[bandac] times!}]
     $elseif[$message[1]==ban&&$getUserVar[banc]==undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*      given that the Condition[1] is false, this condition, called Condition[2], will be run so long as the user agreing has an undefined ban count AND the non-mention reply individual is not the same person running the command. In other words, if you reply to a message but don't use a mention reply while using this command, this code will run, setting the user ban count and user banat count each to 1       */
         $setUserVar[banc;1]
         $setUserVar[banac;1]
@@ -499,9 +499,9 @@ $if[$message[1]==ban&&$getUserVar[banc]==undefined&&$mentioned[1]!=]/*   This if
         $if[$getUserVar[bandac]==undefined]/*      Given condition[2], if the User bandat count is undefined, the following code will run, setting it to 0.       */
             $setUserVar[bandac;0]
         $endIf
-        $sendMessage[{description: $username bans at $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[2], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username drops the ban hammer on $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[2], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[banImageLink1.gif;banImageLink2.gif;banImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has band at others $getUserVar[banac] times and been band at by others $getUserVar[bandac] times!}]
+{footer: $username has dropped the ban hammer on others $getUserVar[banac] times and had the ban hammer dropped on emself by others $getUserVar[bandac] times!}]
     $endelseif
     $elseif[$message[1]==ban&&$getUserVar[banc]==undefined&&$mentioned[1]==]/*         Given that both Condition[1] and Condition[2] are false, this condition, known as Condition[3] will be run, so long as the user bancount is undefined and user has also NOT mentioned another user to ban at, the following code will run, setting the bancount to 1 and setting the banat count to 0.          */
         $setUserVar[banc;1]
@@ -509,9 +509,9 @@ $if[$message[1]==ban&&$getUserVar[banc]==undefined&&$mentioned[1]!=]/*   This if
         $if[$getUserVar[bandac]==undefined]/*          Given condition [3], if the user's bandat count is also undefined, the following code will run, setting it to 0.          */
             $setUserVar[bandac;0]
         $endIf
-        $sendMessage[{description: $username bans ... }/*          given Condition[3], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username drops the ban hammer on em ... }/*          given Condition[3], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[banImageLink1.gif;banImageLink2.gif;banImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has band at others $getUserVar[banac] times and been band at by others $getUserVar[bandac] times!}]
+{footer: $username has dropped the ban hammer on others $getUserVar[banac] times and had the ban hammer dropped on emself by others $getUserVar[bandac] times!}]
     $endelseif
     $elseif[$message[1]==ban&&$getUserVar[banc]!=undefined&&$mentioned[1]!=]/*        Given that Conditions[1-3] are false, this condition, known as Condition[4] will be run, so long as the user bancount IS defined and the user has ALSO tagged someone to ban at (using either the regular @tag or a mentioned reply)        */
         $setUserVar[banc;$sum[$getUserVar[banc];1]]
@@ -528,9 +528,9 @@ $if[$message[1]==ban&&$getUserVar[banc]==undefined&&$mentioned[1]!=]/*   This if
         $if[$getUserVar[bandac]==undefined]/*         Given Condition[4], the following code will run so long as the user banat count is undefined, setting it to 0.         */
             $setUserVar[bandac;0]
         $endIf
-        $sendMessage[{description: $username bans at $username[$mentioned[1]] ... }/*          given Condition[4], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username drops the ban hammer on $username[$mentioned[1]] ... }/*          given Condition[4], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[banImageLink1.gif;banImageLink2.gif;banImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has band at others $getUserVar[banac] times and been band at by others $getUserVar[bandac] times!}]
+{footer: $username has dropped the ban hammer on others $getUserVar[banac] times and had the ban hammer dropped on emself by others $getUserVar[bandac] times!}]
     $endelseif
     $elseif[$message[1]==ban&&$getUserVar[banc]!=undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*         Given that Conditions[1-4] are false, this condition, known as Condition[5] will be run so long as the user bancount IS defined AND the user IS replying to someone who is NOT the original agreing user. In other words, if you reply to any message BESIDES your own message, but you HAVE band before, the following code will run, adding one value to the user ban count.           */
         $setUserVar[banc;$sum[$getUserVar[banc];1]]
@@ -547,18 +547,18 @@ $if[$message[1]==ban&&$getUserVar[banc]==undefined&&$mentioned[1]!=]/*   This if
         $if[$getUserVar[bandac]==undefined]/*           Given Condition[5], if the user bandat count IS undefined, the following code will run, setting it to 0.         */
             $setUserVar[bandac;0]
         $endIf
-        $sendMessage[{description: $username bans ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username drops the ban hammer on em ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[banImageLink1.gif;banImageLink2.gif;banImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has band at others $getUserVar[banac] times and been band at by others $getUserVar[bandac] times!}]
+{footer: $username has dropped the ban hammer on others $getUserVar[banac] times and had the ban hammer dropped on emself by others $getUserVar[bandac] times!}]
     $endelseif
     $elseif[$message[1]==ban&&$getUserVar[banc]!=undefined&&$mentioned[1]==]/*        Given that Conditions[1-5] are false, the following condition, known as Condition[6], will be run so long as the user ban count IS defined and user did NOT mention anyone, adding one value to the user bancount.          */
         $setUserVar[banc;$sum[$getUserVar[banc];1]]
         $if[$getUserVar[bandac]==undefined]/*         Given Condition[6], if the user bandat count is undefined, the following code will be run, setting that count to 0.        */
             $setUserVar[bandac;0]
         $endIf
-        $sendMessage[{description: $username bans ... }/*          given Condition[6], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username drops the ban hammer on em ... }/*          given Condition[6], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[banImageLink1.gif;banImageLink2.gif;banImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has band at others $getUserVar[banac] times and been band at by others $getUserVar[bandac] times!}]
+{footer: $username has dropped the ban hammer on others $getUserVar[banac] times and had the ban hammer dropped on emself by others $getUserVar[bandac] times!}]
     $endelseif
 $endIf
 /*endbans*/
