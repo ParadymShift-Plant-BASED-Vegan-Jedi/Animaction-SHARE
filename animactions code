@@ -989,7 +989,7 @@ Condition[5] = User carrycount(Defined):   True && User Non-Mention Reply: True
 Condition[6] = User carrycount(Defined):   True && User Mention: False
 
 */
-$if[$message[1]==carry&&$getUserVar[carryc]==undefined&&$mentioned[1]!=]/*   This if condition is called Condition[1] and it is for when the user runs the carry command but has never carryd (verified by the $getUserVar[carryc] [carry count] being undefined) while also mentioning another user (to carry at) [fyi, the carryac var is for counting how many times user has carryd at another], first setting the carry count and carryat count of the user to 1    */
+$if[$message[1]==carry&&$getUserVar[carryc]==undefined&&$mentioned[1]!=]/*   This if condition is called Condition[1] and it is for when the user runs the carry command but has never carryd (verified by the $getUserVar[carryc] [carry count] being undefined) while also mentioning another user (to carry at) [fyi, the carryac var is for counting how many times user has picked up another], first setting the carry count and carryat count of the user to 1    */
     $setUserVar[carryc;1]
     $setUserVar[carryac;1]
     $if[$getUserVar[carrydac;$mentioned[1]]==undefined]/* given Condition[1], if the carrydat count for the person being mentioned is ALSO undefined, the following code will run, setting that count to 1   */
@@ -1000,9 +1000,9 @@ $if[$message[1]==carry&&$getUserVar[carryc]==undefined&&$mentioned[1]!=]/*   Thi
     $if[$getUserVar[carrydac]==undefined]/*    given Condition[1], this condition will check to see if the user performing the action has ever been carrydat before. If not, that count will be set to 0.    */
         $setUserVar[carrydac;0]
     $endIf
-    $sendMessage[{description: $username carrys at $username[$mentioned[1]] ... }/*    given Condition[1], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+    $sendMessage[{description: $username picks up $username[$mentioned[1]] ... }/*    given Condition[1], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[ImageLink1.gif;ImageLink2.gif;ImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then COPY the links and ADD/PASTE them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has carryd at others $getUserVar[carryac] times and been carryd at by others $getUserVar[carrydac] times!}]
+{footer: $username has picked up others $getUserVar[carryac] times and been picked up by others $getUserVar[carrydac] times!}]
     $elseif[$message[1]==carry&&$getUserVar[carryc]==undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*      given that the Condition[1] is false, this condition, called Condition[2], will be run so long as the user agreing has an undefined carry count AND the non-mention reply individual is not the same person running the command. In other words, if you reply to a message but don't use a mention reply while using this command, this code will run, setting the user carry count and user carryat count each to 1       */
         $setUserVar[carryc;1]
         $setUserVar[carryac;1]
@@ -1014,9 +1014,9 @@ $if[$message[1]==carry&&$getUserVar[carryc]==undefined&&$mentioned[1]!=]/*   Thi
         $if[$getUserVar[carrydac]==undefined]/*      Given condition[2], if the User carrydat count is undefined, the following code will run, setting it to 0.       */
             $setUserVar[carrydac;0]
         $endIf
-        $sendMessage[{description: $username carrys at $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[2], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username picks up $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[2], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[carryImageLink1.gif;carryImageLink2.gif;carryImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has carryd at others $getUserVar[carryac] times and been carryd at by others $getUserVar[carrydac] times!}]
+{footer: $username has picked up others $getUserVar[carryac] times and been picked up by others $getUserVar[carrydac] times!}]
     $endelseif
     $elseif[$message[1]==carry&&$getUserVar[carryc]==undefined&&$mentioned[1]==]/*         Given that both Condition[1] and Condition[2] are false, this condition, known as Condition[3] will be run, so long as the user carrycount is undefined and user has also NOT mentioned another user to carry at, the following code will run, setting the carrycount to 1 and setting the carryat count to 0.          */
         $setUserVar[carryc;1]
@@ -1024,9 +1024,9 @@ $if[$message[1]==carry&&$getUserVar[carryc]==undefined&&$mentioned[1]!=]/*   Thi
         $if[$getUserVar[carrydac]==undefined]/*          Given condition [3], if the user's carrydat count is also undefined, the following code will run, setting it to 0.          */
             $setUserVar[carrydac;0]
         $endIf
-        $sendMessage[{description: $username carrys ... }/*          given Condition[3], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username picks someone up ... }/*          given Condition[3], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[carryImageLink1.gif;carryImageLink2.gif;carryImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has carryd at others $getUserVar[carryac] times and been carryd at by others $getUserVar[carrydac] times!}]
+{footer: $username has picked up others $getUserVar[carryac] times and been picked up by others $getUserVar[carrydac] times!}]
     $endelseif
     $elseif[$message[1]==carry&&$getUserVar[carryc]!=undefined&&$mentioned[1]!=]/*        Given that Conditions[1-3] are false, this condition, known as Condition[4] will be run, so long as the user carrycount IS defined and the user has ALSO tagged someone to carry at (using either the regular @tag or a mentioned reply)        */
         $setUserVar[carryc;$sum[$getUserVar[carryc];1]]
@@ -1043,9 +1043,9 @@ $if[$message[1]==carry&&$getUserVar[carryc]==undefined&&$mentioned[1]!=]/*   Thi
         $if[$getUserVar[carrydac]==undefined]/*         Given Condition[4], the following code will run so long as the user carryat count is undefined, setting it to 0.         */
             $setUserVar[carrydac;0]
         $endIf
-        $sendMessage[{description: $username carrys at $username[$mentioned[1]] ... }/*          given Condition[4], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username picks up $username[$mentioned[1]] ... }/*          given Condition[4], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[carryImageLink1.gif;carryImageLink2.gif;carryImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has carryd at others $getUserVar[carryac] times and been carryd at by others $getUserVar[carrydac] times!}]
+{footer: $username has picked up others $getUserVar[carryac] times and been picked up by others $getUserVar[carrydac] times!}]
     $endelseif
     $elseif[$message[1]==carry&&$getUserVar[carryc]!=undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*         Given that Conditions[1-4] are false, this condition, known as Condition[5] will be run so long as the user carrycount IS defined AND the user IS replying to someone who is NOT the original agreing user. In other words, if you reply to any message BESIDES your own message, but you HAVE carryd before, the following code will run, adding one value to the user carry count.           */
         $setUserVar[carryc;$sum[$getUserVar[carryc];1]]
@@ -1054,26 +1054,26 @@ $if[$message[1]==carry&&$getUserVar[carryc]==undefined&&$mentioned[1]!=]/*   Thi
             $else/*        However, if the user carryat count IS defined, the following code will run, adding one value to the carryat count.        */
                 $setUserVar[carryac;$sum[$getUserVar[carryac];1]]
         $endIf
-        $if[$getUserVar[carrydac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        Given Condition[5], if the user being carryd at has a carrydat count which IS undefined, the following code will run, setting it to 1.       */        */
+        $if[$getUserVar[carrydac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        Given Condition[5], if the user being picked up has a carrydat count which IS undefined, the following code will run, setting it to 1.       */        */
             $setUserVar[carrydac;1;$msg[$channelid;$referencemessageid;author]]
-            $else/*        However, if the user being carryd at has a carrydat count which IS defined, the following code will run, adding one value to the carrydat count.         */
+            $else/*        However, if the user being picked up has a carrydat count which IS defined, the following code will run, adding one value to the carrydat count.         */
                 $setUserVar[carrydac;$sum[$getUserVar[carrydac;$msg[$channelid;$referencemessageid;author]];1];$msg[$channelid;$referencemessageid;author]]
         $endIf
         $if[$getUserVar[carrydac]==undefined]/*           Given Condition[5], if the user carrydat count IS undefined, the following code will run, setting it to 0.         */
             $setUserVar[carrydac;0]
         $endIf
-        $sendMessage[{description: $username carrys ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username picks up $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[carryImageLink1.gif;carryImageLink2.gif;carryImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has carryd at others $getUserVar[carryac] times and been carryd at by others $getUserVar[carrydac] times!}]
+{footer: $username has picked up others $getUserVar[carryac] times and been picked up by others $getUserVar[carrydac] times!}]
     $endelseif
     $elseif[$message[1]==carry&&$getUserVar[carryc]!=undefined&&$mentioned[1]==]/*        Given that Conditions[1-5] are false, the following condition, known as Condition[6], will be run so long as the user carry count IS defined and user did NOT mention anyone, adding one value to the user carrycount.          */
         $setUserVar[carryc;$sum[$getUserVar[carryc];1]]
         $if[$getUserVar[carrydac]==undefined]/*         Given Condition[6], if the user carrydat count is undefined, the following code will be run, setting that count to 0.        */
             $setUserVar[carrydac;0]
         $endIf
-        $sendMessage[{description: $username carrys ... }/*          given Condition[6], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username picks someone up ... }/*          given Condition[6], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[carryImageLink1.gif;carryImageLink2.gif;carryImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has carryd at others $getUserVar[carryac] times and been carryd at by others $getUserVar[carrydac] times!}]
+{footer: $username has picked up others $getUserVar[carryac] times and been picked up by others $getUserVar[carrydac] times!}]
     $endelseif
 $endIf
 /*endcarrys*/
@@ -1092,7 +1092,7 @@ Condition[5] = User challengecount(Defined):   True && User Non-Mention Reply: T
 Condition[6] = User challengecount(Defined):   True && User Mention: False
 
 */
-$if[$message[1]==challenge&&$getUserVar[challengec]==undefined&&$mentioned[1]!=]/*   This if condition is called Condition[1] and it is for when the user runs the challenge command but has never challenged (verified by the $getUserVar[challengec] [challenge count] being undefined) while also mentioning another user (to challenge at) [fyi, the challengeac var is for counting how many times user has challenged at another], first setting the challenge count and challengeat count of the user to 1    */
+$if[$message[1]==challenge&&$getUserVar[challengec]==undefined&&$mentioned[1]!=]/*   This if condition is called Condition[1] and it is for when the user runs the challenge command but has never challenged (verified by the $getUserVar[challengec] [challenge count] being undefined) while also mentioning another user (to challenge at) [fyi, the challengeac var is for counting how many times user has challenged another], first setting the challenge count and challengeat count of the user to 1    */
     $setUserVar[challengec;1]
     $setUserVar[challengeac;1]
     $if[$getUserVar[challengedac;$mentioned[1]]==undefined]/* given Condition[1], if the challengedat count for the person being mentioned is ALSO undefined, the following code will run, setting that count to 1   */
@@ -1103,9 +1103,9 @@ $if[$message[1]==challenge&&$getUserVar[challengec]==undefined&&$mentioned[1]!=]
     $if[$getUserVar[challengedac]==undefined]/*    given Condition[1], this condition will check to see if the user performing the action has ever been challengedat before. If not, that count will be set to 0.    */
         $setUserVar[challengedac;0]
     $endIf
-    $sendMessage[{description: $username challenges at $username[$mentioned[1]] ... }/*    given Condition[1], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+    $sendMessage[{description: $username challenges $username[$mentioned[1]] ... }/*    given Condition[1], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[ImageLink1.gif;ImageLink2.gif;ImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then COPY the links and ADD/PASTE them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has challenged at others $getUserVar[challengeac] times and been challenged at by others $getUserVar[challengedac] times!}]
+{footer: $username has challenged others $getUserVar[challengeac] times and been challenged by others $getUserVar[challengedac] times!}]
     $elseif[$message[1]==challenge&&$getUserVar[challengec]==undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*      given that the Condition[1] is false, this condition, called Condition[2], will be run so long as the user agreing has an undefined challenge count AND the non-mention reply individual is not the same person running the command. In other words, if you reply to a message but don't use a mention reply while using this command, this code will run, setting the user challenge count and user challengeat count each to 1       */
         $setUserVar[challengec;1]
         $setUserVar[challengeac;1]
@@ -1117,9 +1117,9 @@ $if[$message[1]==challenge&&$getUserVar[challengec]==undefined&&$mentioned[1]!=]
         $if[$getUserVar[challengedac]==undefined]/*      Given condition[2], if the User challengedat count is undefined, the following code will run, setting it to 0.       */
             $setUserVar[challengedac;0]
         $endIf
-        $sendMessage[{description: $username challenges at $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[2], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username challenges $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[2], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[challengeImageLink1.gif;challengeImageLink2.gif;challengeImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has challenged at others $getUserVar[challengeac] times and been challenged at by others $getUserVar[challengedac] times!}]
+{footer: $username has challenged others $getUserVar[challengeac] times and been challenged by others $getUserVar[challengedac] times!}]
     $endelseif
     $elseif[$message[1]==challenge&&$getUserVar[challengec]==undefined&&$mentioned[1]==]/*         Given that both Condition[1] and Condition[2] are false, this condition, known as Condition[3] will be run, so long as the user challengecount is undefined and user has also NOT mentioned another user to challenge at, the following code will run, setting the challengecount to 1 and setting the challengeat count to 0.          */
         $setUserVar[challengec;1]
@@ -1127,9 +1127,9 @@ $if[$message[1]==challenge&&$getUserVar[challengec]==undefined&&$mentioned[1]!=]
         $if[$getUserVar[challengedac]==undefined]/*          Given condition [3], if the user's challengedat count is also undefined, the following code will run, setting it to 0.          */
             $setUserVar[challengedac;0]
         $endIf
-        $sendMessage[{description: $username challenges ... }/*          given Condition[3], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username challenges someone ... }/*          given Condition[3], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[challengeImageLink1.gif;challengeImageLink2.gif;challengeImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has challenged at others $getUserVar[challengeac] times and been challenged at by others $getUserVar[challengedac] times!}]
+{footer: $username has challenged others $getUserVar[challengeac] times and been challenged by others $getUserVar[challengedac] times!}]
     $endelseif
     $elseif[$message[1]==challenge&&$getUserVar[challengec]!=undefined&&$mentioned[1]!=]/*        Given that Conditions[1-3] are false, this condition, known as Condition[4] will be run, so long as the user challengecount IS defined and the user has ALSO tagged someone to challenge at (using either the regular @tag or a mentioned reply)        */
         $setUserVar[challengec;$sum[$getUserVar[challengec];1]]
@@ -1146,9 +1146,9 @@ $if[$message[1]==challenge&&$getUserVar[challengec]==undefined&&$mentioned[1]!=]
         $if[$getUserVar[challengedac]==undefined]/*         Given Condition[4], the following code will run so long as the user challengeat count is undefined, setting it to 0.         */
             $setUserVar[challengedac;0]
         $endIf
-        $sendMessage[{description: $username challenges at $username[$mentioned[1]] ... }/*          given Condition[4], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username challenges $username[$mentioned[1]] ... }/*          given Condition[4], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[challengeImageLink1.gif;challengeImageLink2.gif;challengeImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has challenged at others $getUserVar[challengeac] times and been challenged at by others $getUserVar[challengedac] times!}]
+{footer: $username has challenged others $getUserVar[challengeac] times and been challenged by others $getUserVar[challengedac] times!}]
     $endelseif
     $elseif[$message[1]==challenge&&$getUserVar[challengec]!=undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*         Given that Conditions[1-4] are false, this condition, known as Condition[5] will be run so long as the user challengecount IS defined AND the user IS replying to someone who is NOT the original agreing user. In other words, if you reply to any message BESIDES your own message, but you HAVE challenged before, the following code will run, adding one value to the user challenge count.           */
         $setUserVar[challengec;$sum[$getUserVar[challengec];1]]
@@ -1157,26 +1157,26 @@ $if[$message[1]==challenge&&$getUserVar[challengec]==undefined&&$mentioned[1]!=]
             $else/*        However, if the user challengeat count IS defined, the following code will run, adding one value to the challengeat count.        */
                 $setUserVar[challengeac;$sum[$getUserVar[challengeac];1]]
         $endIf
-        $if[$getUserVar[challengedac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        Given Condition[5], if the user being challenged at has a challengedat count which IS undefined, the following code will run, setting it to 1.       */        */
+        $if[$getUserVar[challengedac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        Given Condition[5], if the user being challenged has a challengedat count which IS undefined, the following code will run, setting it to 1.       */        */
             $setUserVar[challengedac;1;$msg[$channelid;$referencemessageid;author]]
-            $else/*        However, if the user being challenged at has a challengedat count which IS defined, the following code will run, adding one value to the challengedat count.         */
+            $else/*        However, if the user being challenged has a challengedat count which IS defined, the following code will run, adding one value to the challengedat count.         */
                 $setUserVar[challengedac;$sum[$getUserVar[challengedac;$msg[$channelid;$referencemessageid;author]];1];$msg[$channelid;$referencemessageid;author]]
         $endIf
         $if[$getUserVar[challengedac]==undefined]/*           Given Condition[5], if the user challengedat count IS undefined, the following code will run, setting it to 0.         */
             $setUserVar[challengedac;0]
         $endIf
-        $sendMessage[{description: $username challenges ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username challenges $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[challengeImageLink1.gif;challengeImageLink2.gif;challengeImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has challenged at others $getUserVar[challengeac] times and been challenged at by others $getUserVar[challengedac] times!}]
+{footer: $username has challenged others $getUserVar[challengeac] times and been challenged by others $getUserVar[challengedac] times!}]
     $endelseif
     $elseif[$message[1]==challenge&&$getUserVar[challengec]!=undefined&&$mentioned[1]==]/*        Given that Conditions[1-5] are false, the following condition, known as Condition[6], will be run so long as the user challenge count IS defined and user did NOT mention anyone, adding one value to the user challengecount.          */
         $setUserVar[challengec;$sum[$getUserVar[challengec];1]]
         $if[$getUserVar[challengedac]==undefined]/*         Given Condition[6], if the user challengedat count is undefined, the following code will be run, setting that count to 0.        */
             $setUserVar[challengedac;0]
         $endIf
-        $sendMessage[{description: $username challenges ... }/*          given Condition[6], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username challenges someone ... }/*          given Condition[6], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[challengeImageLink1.gif;challengeImageLink2.gif;challengeImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has challenged at others $getUserVar[challengeac] times and been challenged at by others $getUserVar[challengedac] times!}]
+{footer: $username has challenged others $getUserVar[challengeac] times and been challenged by others $getUserVar[challengedac] times!}]
     $endelseif
 $endIf
 /*endchallenges*/
