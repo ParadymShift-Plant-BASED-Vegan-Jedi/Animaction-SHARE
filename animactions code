@@ -135,7 +135,7 @@ $if[$message[1]==agree&&$getUserVar[agreec]==undefined&&$mentioned[1]!=]/*   Thi
         $if[$getUserVar[agreedac]==undefined]/*           Given Condition[5], if the user agreedat count IS undefined, the following code will run, setting it to 0.         */
             $setUserVar[agreedac;0]
         $endIf
-        $sendMessage[{description: $username agrees ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username agrees with $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[agreeImageLink1.gif;agreeImageLink2.gif;agreeImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
 {footer: $username has agreed with others $getUserVar[agreeac] times and been agreed with by others $getUserVar[agreedac] times!}]
     $endelseif
@@ -238,7 +238,7 @@ $if[$message[1]==angry&&$getUserVar[angerc]==undefined&&$mentioned[1]!=]/*   Thi
         $if[$getUserVar[angerdac]==undefined]/*           Given Condition[5], if the user angerdat count IS undefined, the following code will run, setting it to 0.         */
             $setUserVar[angerdac;0]
         $endIf
-        $sendMessage[{description: $username angers ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username is angry with $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[angerImageLink1.gif;angerImageLink2.gif;angerImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
 {footer: $username has been angry with others $getUserVar[angerac] times and made others angry $getUserVar[angerdac] times!}]
     $endelseif
@@ -341,7 +341,7 @@ $if[$message[1]==apology&&$getUserVar[apologyc]==undefined&&$mentioned[1]!=]/*  
         $if[$getUserVar[apologizedac]==undefined]/*           Given Condition[5], if the user apologizedat count IS undefined, the following code will run, setting it to 0.         */
             $setUserVar[apologizedac;0]
         $endIf
-        $sendMessage[{description: $username apologys ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username offers an apology to $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[apologyImageLink1.gif;apologyImageLink2.gif;apologyImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
 {footer: $username has apologized to others $getUserVar[apologizeac] times and been apologized to by others $getUserVar[apologizedac] times!}]
     $endelseif
@@ -444,7 +444,7 @@ $if[$message[1]==attack&&$getUserVar[attackc]==undefined&&$mentioned[1]!=]/*   T
         $if[$getUserVar[attackdac]==undefined]/*           Given Condition[5], if the user attackdat count IS undefined, the following code will run, setting it to 0.         */
             $setUserVar[attackdac;0]
         $endIf
-        $sendMessage[{description: $username attacks ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username attacks $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[attackImageLink1.gif;attackImageLink2.gif;attackImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
 {footer: $username has attacked others $getUserVar[attackac] times and been attacked by others $getUserVar[attackdac] times!}]
     $endelseif
@@ -547,7 +547,7 @@ $if[$message[1]==ban&&$getUserVar[banc]==undefined&&$mentioned[1]!=]/*   This if
         $if[$getUserVar[bandac]==undefined]/*           Given Condition[5], if the user bandat count IS undefined, the following code will run, setting it to 0.         */
             $setUserVar[bandac;0]
         $endIf
-        $sendMessage[{description: $username drops the ban hammer on em ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username drops the ban hammer on $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[banImageLink1.gif;banImageLink2.gif;banImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
 {footer: $username has dropped the ban hammer on others $getUserVar[banac] times and had the ban hammer dropped on emself by others $getUserVar[bandac] times!}]
     $endelseif
@@ -577,7 +577,7 @@ Condition[5] = User blushcount(Defined):   True && User Non-Mention Reply: True
 Condition[6] = User blushcount(Defined):   True && User Mention: False
 
 */
-$if[$message[1]==blush&&$getUserVar[blushc]==undefined&&$mentioned[1]!=]/*   This if condition is called Condition[1] and it is for when the user runs the blush command but has never blushd (verified by the $getUserVar[blushc] [blush count] being undefined) while also mentioning another user (to blush at) [fyi, the blushac var is for counting how many times user has blushd at another], first setting the blush count and blushat count of the user to 1    */
+$if[$message[1]==blush&&$getUserVar[blushc]==undefined&&$mentioned[1]!=]/*   This if condition is called Condition[1] and it is for when the user runs the blush command but has never blushd (verified by the $getUserVar[blushc] [blush count] being undefined) while also mentioning another user (to blush at) [fyi, the blushac var is for counting how many times user has blushed because of another], first setting the blush count and blushat count of the user to 1    */
     $setUserVar[blushc;1]
     $setUserVar[blushac;1]
     $if[$getUserVar[blushdac;$mentioned[1]]==undefined]/* given Condition[1], if the blushdat count for the person being mentioned is ALSO undefined, the following code will run, setting that count to 1   */
@@ -588,9 +588,9 @@ $if[$message[1]==blush&&$getUserVar[blushc]==undefined&&$mentioned[1]!=]/*   Thi
     $if[$getUserVar[blushdac]==undefined]/*    given Condition[1], this condition will check to see if the user performing the action has ever been blushdat before. If not, that count will be set to 0.    */
         $setUserVar[blushdac;0]
     $endIf
-    $sendMessage[{description: $username blushs at $username[$mentioned[1]] ... }/*    given Condition[1], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+    $sendMessage[{description: $username blushes at $username[$mentioned[1]] ... }/*    given Condition[1], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[ImageLink1.gif;ImageLink2.gif;ImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then COPY the links and ADD/PASTE them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has blushd at others $getUserVar[blushac] times and been blushd at by others $getUserVar[blushdac] times!}]
+{footer: $username has blushed because of others $getUserVar[blushac] times and caused others to blush $getUserVar[blushdac] times!}]
     $elseif[$message[1]==blush&&$getUserVar[blushc]==undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*      given that the Condition[1] is false, this condition, called Condition[2], will be run so long as the user agreing has an undefined blush count AND the non-mention reply individual is not the same person running the command. In other words, if you reply to a message but don't use a mention reply while using this command, this code will run, setting the user blush count and user blushat count each to 1       */
         $setUserVar[blushc;1]
         $setUserVar[blushac;1]
@@ -602,9 +602,9 @@ $if[$message[1]==blush&&$getUserVar[blushc]==undefined&&$mentioned[1]!=]/*   Thi
         $if[$getUserVar[blushdac]==undefined]/*      Given condition[2], if the User blushdat count is undefined, the following code will run, setting it to 0.       */
             $setUserVar[blushdac;0]
         $endIf
-        $sendMessage[{description: $username blushs at $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[2], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username blushes at $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[2], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[blushImageLink1.gif;blushImageLink2.gif;blushImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has blushd at others $getUserVar[blushac] times and been blushd at by others $getUserVar[blushdac] times!}]
+{footer: $username has blushed because of others $getUserVar[blushac] times and caused others to blush $getUserVar[blushdac] times!}]
     $endelseif
     $elseif[$message[1]==blush&&$getUserVar[blushc]==undefined&&$mentioned[1]==]/*         Given that both Condition[1] and Condition[2] are false, this condition, known as Condition[3] will be run, so long as the user blushcount is undefined and user has also NOT mentioned another user to blush at, the following code will run, setting the blushcount to 1 and setting the blushat count to 0.          */
         $setUserVar[blushc;1]
@@ -612,9 +612,9 @@ $if[$message[1]==blush&&$getUserVar[blushc]==undefined&&$mentioned[1]!=]/*   Thi
         $if[$getUserVar[blushdac]==undefined]/*          Given condition [3], if the user's blushdat count is also undefined, the following code will run, setting it to 0.          */
             $setUserVar[blushdac;0]
         $endIf
-        $sendMessage[{description: $username blushs ... }/*          given Condition[3], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username blushes ... }/*          given Condition[3], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[blushImageLink1.gif;blushImageLink2.gif;blushImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has blushd at others $getUserVar[blushac] times and been blushd at by others $getUserVar[blushdac] times!}]
+{footer: $username has blushed because of others $getUserVar[blushac] times and caused others to blush $getUserVar[blushdac] times!}]
     $endelseif
     $elseif[$message[1]==blush&&$getUserVar[blushc]!=undefined&&$mentioned[1]!=]/*        Given that Conditions[1-3] are false, this condition, known as Condition[4] will be run, so long as the user blushcount IS defined and the user has ALSO tagged someone to blush at (using either the regular @tag or a mentioned reply)        */
         $setUserVar[blushc;$sum[$getUserVar[blushc];1]]
@@ -631,9 +631,9 @@ $if[$message[1]==blush&&$getUserVar[blushc]==undefined&&$mentioned[1]!=]/*   Thi
         $if[$getUserVar[blushdac]==undefined]/*         Given Condition[4], the following code will run so long as the user blushat count is undefined, setting it to 0.         */
             $setUserVar[blushdac;0]
         $endIf
-        $sendMessage[{description: $username blushs at $username[$mentioned[1]] ... }/*          given Condition[4], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username blushes at $username[$mentioned[1]] ... }/*          given Condition[4], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[blushImageLink1.gif;blushImageLink2.gif;blushImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has blushd at others $getUserVar[blushac] times and been blushd at by others $getUserVar[blushdac] times!}]
+{footer: $username has blushed because of others $getUserVar[blushac] times and caused others to blush $getUserVar[blushdac] times!}]
     $endelseif
     $elseif[$message[1]==blush&&$getUserVar[blushc]!=undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*         Given that Conditions[1-4] are false, this condition, known as Condition[5] will be run so long as the user blushcount IS defined AND the user IS replying to someone who is NOT the original agreing user. In other words, if you reply to any message BESIDES your own message, but you HAVE blushd before, the following code will run, adding one value to the user blush count.           */
         $setUserVar[blushc;$sum[$getUserVar[blushc];1]]
@@ -642,29 +642,29 @@ $if[$message[1]==blush&&$getUserVar[blushc]==undefined&&$mentioned[1]!=]/*   Thi
             $else/*        However, if the user blushat count IS defined, the following code will run, adding one value to the blushat count.        */
                 $setUserVar[blushac;$sum[$getUserVar[blushac];1]]
         $endIf
-        $if[$getUserVar[blushdac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        Given Condition[5], if the user being blushd at has a blushdat count which IS undefined, the following code will run, setting it to 1.       */        */
+        $if[$getUserVar[blushdac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        Given Condition[5], if the user being blushed because of has a blushdat count which IS undefined, the following code will run, setting it to 1.       */        */
             $setUserVar[blushdac;1;$msg[$channelid;$referencemessageid;author]]
-            $else/*        However, if the user being blushd at has a blushdat count which IS defined, the following code will run, adding one value to the blushdat count.         */
+            $else/*        However, if the user being blushed because of has a blushdat count which IS defined, the following code will run, adding one value to the blushdat count.         */
                 $setUserVar[blushdac;$sum[$getUserVar[blushdac;$msg[$channelid;$referencemessageid;author]];1];$msg[$channelid;$referencemessageid;author]]
         $endIf
         $if[$getUserVar[blushdac]==undefined]/*           Given Condition[5], if the user blushdat count IS undefined, the following code will run, setting it to 0.         */
             $setUserVar[blushdac;0]
         $endIf
-        $sendMessage[{description: $username blushs ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username blushes at $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[blushImageLink1.gif;blushImageLink2.gif;blushImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has blushd at others $getUserVar[blushac] times and been blushd at by others $getUserVar[blushdac] times!}]
+{footer: $username has blushed because of others $getUserVar[blushac] times and caused others to blush $getUserVar[blushdac] times!}]
     $endelseif
     $elseif[$message[1]==blush&&$getUserVar[blushc]!=undefined&&$mentioned[1]==]/*        Given that Conditions[1-5] are false, the following condition, known as Condition[6], will be run so long as the user blush count IS defined and user did NOT mention anyone, adding one value to the user blushcount.          */
         $setUserVar[blushc;$sum[$getUserVar[blushc];1]]
         $if[$getUserVar[blushdac]==undefined]/*         Given Condition[6], if the user blushdat count is undefined, the following code will be run, setting that count to 0.        */
             $setUserVar[blushdac;0]
         $endIf
-        $sendMessage[{description: $username blushs ... }/*          given Condition[6], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username blushes ... }/*          given Condition[6], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[blushImageLink1.gif;blushImageLink2.gif;blushImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has blushd at others $getUserVar[blushac] times and been blushd at by others $getUserVar[blushdac] times!}]
+{footer: $username has blushed because of others $getUserVar[blushac] times and caused others to blush $getUserVar[blushdac] times!}]
     $endelseif
 $endIf
-/*endblushs*/
+/*endblushes*/
 /*
 
 Here is where the bonk action command begins:
@@ -680,7 +680,7 @@ Condition[5] = User bonkcount(Defined):   True && User Non-Mention Reply: True
 Condition[6] = User bonkcount(Defined):   True && User Mention: False
 
 */
-$if[$message[1]==bonk&&$getUserVar[bonkc]==undefined&&$mentioned[1]!=]/*   This if condition is called Condition[1] and it is for when the user runs the bonk command but has never bonkd (verified by the $getUserVar[bonkc] [bonk count] being undefined) while also mentioning another user (to bonk at) [fyi, the bonkac var is for counting how many times user has bonkd at another], first setting the bonk count and bonkat count of the user to 1    */
+$if[$message[1]==bonk&&$getUserVar[bonkc]==undefined&&$mentioned[1]!=]/*   This if condition is called Condition[1] and it is for when the user runs the bonk command but has never bonkd (verified by the $getUserVar[bonkc] [bonk count] being undefined) while also mentioning another user (to bonk at) [fyi, the bonkac var is for counting how many times user has bonked another], first setting the bonk count and bonkat count of the user to 1    */
     $setUserVar[bonkc;1]
     $setUserVar[bonkac;1]
     $if[$getUserVar[bonkdac;$mentioned[1]]==undefined]/* given Condition[1], if the bonkdat count for the person being mentioned is ALSO undefined, the following code will run, setting that count to 1   */
@@ -691,9 +691,9 @@ $if[$message[1]==bonk&&$getUserVar[bonkc]==undefined&&$mentioned[1]!=]/*   This 
     $if[$getUserVar[bonkdac]==undefined]/*    given Condition[1], this condition will check to see if the user performing the action has ever been bonkdat before. If not, that count will be set to 0.    */
         $setUserVar[bonkdac;0]
     $endIf
-    $sendMessage[{description: $username bonks at $username[$mentioned[1]] ... }/*    given Condition[1], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+    $sendMessage[{description: $username bonks $username[$mentioned[1]] ... }/*    given Condition[1], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[ImageLink1.gif;ImageLink2.gif;ImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then COPY the links and ADD/PASTE them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has bonkd at others $getUserVar[bonkac] times and been bonkd at by others $getUserVar[bonkdac] times!}]
+{footer: $username has bonked others $getUserVar[bonkac] times and been bonked by others $getUserVar[bonkdac] times!}]
     $elseif[$message[1]==bonk&&$getUserVar[bonkc]==undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*      given that the Condition[1] is false, this condition, called Condition[2], will be run so long as the user agreing has an undefined bonk count AND the non-mention reply individual is not the same person running the command. In other words, if you reply to a message but don't use a mention reply while using this command, this code will run, setting the user bonk count and user bonkat count each to 1       */
         $setUserVar[bonkc;1]
         $setUserVar[bonkac;1]
@@ -705,9 +705,9 @@ $if[$message[1]==bonk&&$getUserVar[bonkc]==undefined&&$mentioned[1]!=]/*   This 
         $if[$getUserVar[bonkdac]==undefined]/*      Given condition[2], if the User bonkdat count is undefined, the following code will run, setting it to 0.       */
             $setUserVar[bonkdac;0]
         $endIf
-        $sendMessage[{description: $username bonks at $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[2], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username bonks $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[2], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[bonkImageLink1.gif;bonkImageLink2.gif;bonkImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has bonkd at others $getUserVar[bonkac] times and been bonkd at by others $getUserVar[bonkdac] times!}]
+{footer: $username has bonked others $getUserVar[bonkac] times and been bonked by others $getUserVar[bonkdac] times!}]
     $endelseif
     $elseif[$message[1]==bonk&&$getUserVar[bonkc]==undefined&&$mentioned[1]==]/*         Given that both Condition[1] and Condition[2] are false, this condition, known as Condition[3] will be run, so long as the user bonkcount is undefined and user has also NOT mentioned another user to bonk at, the following code will run, setting the bonkcount to 1 and setting the bonkat count to 0.          */
         $setUserVar[bonkc;1]
@@ -717,7 +717,7 @@ $if[$message[1]==bonk&&$getUserVar[bonkc]==undefined&&$mentioned[1]!=]/*   This 
         $endIf
         $sendMessage[{description: $username bonks ... }/*          given Condition[3], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[bonkImageLink1.gif;bonkImageLink2.gif;bonkImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has bonkd at others $getUserVar[bonkac] times and been bonkd at by others $getUserVar[bonkdac] times!}]
+{footer: $username has bonked others $getUserVar[bonkac] times and been bonked by others $getUserVar[bonkdac] times!}]
     $endelseif
     $elseif[$message[1]==bonk&&$getUserVar[bonkc]!=undefined&&$mentioned[1]!=]/*        Given that Conditions[1-3] are false, this condition, known as Condition[4] will be run, so long as the user bonkcount IS defined and the user has ALSO tagged someone to bonk at (using either the regular @tag or a mentioned reply)        */
         $setUserVar[bonkc;$sum[$getUserVar[bonkc];1]]
@@ -734,9 +734,9 @@ $if[$message[1]==bonk&&$getUserVar[bonkc]==undefined&&$mentioned[1]!=]/*   This 
         $if[$getUserVar[bonkdac]==undefined]/*         Given Condition[4], the following code will run so long as the user bonkat count is undefined, setting it to 0.         */
             $setUserVar[bonkdac;0]
         $endIf
-        $sendMessage[{description: $username bonks at $username[$mentioned[1]] ... }/*          given Condition[4], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username bonks $username[$mentioned[1]] ... }/*          given Condition[4], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[bonkImageLink1.gif;bonkImageLink2.gif;bonkImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has bonkd at others $getUserVar[bonkac] times and been bonkd at by others $getUserVar[bonkdac] times!}]
+{footer: $username has bonked others $getUserVar[bonkac] times and been bonked by others $getUserVar[bonkdac] times!}]
     $endelseif
     $elseif[$message[1]==bonk&&$getUserVar[bonkc]!=undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*         Given that Conditions[1-4] are false, this condition, known as Condition[5] will be run so long as the user bonkcount IS defined AND the user IS replying to someone who is NOT the original agreing user. In other words, if you reply to any message BESIDES your own message, but you HAVE bonkd before, the following code will run, adding one value to the user bonk count.           */
         $setUserVar[bonkc;$sum[$getUserVar[bonkc];1]]
@@ -745,17 +745,17 @@ $if[$message[1]==bonk&&$getUserVar[bonkc]==undefined&&$mentioned[1]!=]/*   This 
             $else/*        However, if the user bonkat count IS defined, the following code will run, adding one value to the bonkat count.        */
                 $setUserVar[bonkac;$sum[$getUserVar[bonkac];1]]
         $endIf
-        $if[$getUserVar[bonkdac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        Given Condition[5], if the user being bonkd at has a bonkdat count which IS undefined, the following code will run, setting it to 1.       */        */
+        $if[$getUserVar[bonkdac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        Given Condition[5], if the user being bonked has a bonkdat count which IS undefined, the following code will run, setting it to 1.       */        */
             $setUserVar[bonkdac;1;$msg[$channelid;$referencemessageid;author]]
-            $else/*        However, if the user being bonkd at has a bonkdat count which IS defined, the following code will run, adding one value to the bonkdat count.         */
+            $else/*        However, if the user being bonked has a bonkdat count which IS defined, the following code will run, adding one value to the bonkdat count.         */
                 $setUserVar[bonkdac;$sum[$getUserVar[bonkdac;$msg[$channelid;$referencemessageid;author]];1];$msg[$channelid;$referencemessageid;author]]
         $endIf
         $if[$getUserVar[bonkdac]==undefined]/*           Given Condition[5], if the user bonkdat count IS undefined, the following code will run, setting it to 0.         */
             $setUserVar[bonkdac;0]
         $endIf
-        $sendMessage[{description: $username bonks ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username bonks $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[bonkImageLink1.gif;bonkImageLink2.gif;bonkImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has bonkd at others $getUserVar[bonkac] times and been bonkd at by others $getUserVar[bonkdac] times!}]
+{footer: $username has bonked others $getUserVar[bonkac] times and been bonked by others $getUserVar[bonkdac] times!}]
     $endelseif
     $elseif[$message[1]==bonk&&$getUserVar[bonkc]!=undefined&&$mentioned[1]==]/*        Given that Conditions[1-5] are false, the following condition, known as Condition[6], will be run so long as the user bonk count IS defined and user did NOT mention anyone, adding one value to the user bonkcount.          */
         $setUserVar[bonkc;$sum[$getUserVar[bonkc];1]]
@@ -764,7 +764,7 @@ $if[$message[1]==bonk&&$getUserVar[bonkc]==undefined&&$mentioned[1]!=]/*   This 
         $endIf
         $sendMessage[{description: $username bonks ... }/*          given Condition[6], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[bonkImageLink1.gif;bonkImageLink2.gif;bonkImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has bonkd at others $getUserVar[bonkac] times and been bonkd at by others $getUserVar[bonkdac] times!}]
+{footer: $username has bonked others $getUserVar[bonkac] times and been bonked by others $getUserVar[bonkdac] times!}]
     $endelseif
 $endIf
 /*endbonks*/
@@ -783,7 +783,7 @@ Condition[5] = User boredcount(Defined):   True && User Non-Mention Reply: True
 Condition[6] = User boredcount(Defined):   True && User Mention: False
 
 */
-$if[$message[1]==bored&&$getUserVar[boredc]==undefined&&$mentioned[1]!=]/*   This if condition is called Condition[1] and it is for when the user runs the bored command but has never boredd (verified by the $getUserVar[boredc] [bored count] being undefined) while also mentioning another user (to bored at) [fyi, the boredac var is for counting how many times user has boredd at another], first setting the bored count and boredat count of the user to 1    */
+$if[$message[1]==bored&&$getUserVar[boredc]==undefined&&$mentioned[1]!=]/*   This if condition is called Condition[1] and it is for when the user runs the bored command but has never boredd (verified by the $getUserVar[boredc] [bored count] being undefined) while also mentioning another user (to bored at) [fyi, the boredac var is for counting how many times user has expressed boredom to another], first setting the bored count and boredat count of the user to 1    */
     $setUserVar[boredc;1]
     $setUserVar[boredac;1]
     $if[$getUserVar[boreddac;$mentioned[1]]==undefined]/* given Condition[1], if the boreddat count for the person being mentioned is ALSO undefined, the following code will run, setting that count to 1   */
@@ -794,9 +794,9 @@ $if[$message[1]==bored&&$getUserVar[boredc]==undefined&&$mentioned[1]!=]/*   Thi
     $if[$getUserVar[boreddac]==undefined]/*    given Condition[1], this condition will check to see if the user performing the action has ever been boreddat before. If not, that count will be set to 0.    */
         $setUserVar[boreddac;0]
     $endIf
-    $sendMessage[{description: $username boreds at $username[$mentioned[1]] ... }/*    given Condition[1], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+    $sendMessage[{description: $username expresses boredom to $username[$mentioned[1]] ... }/*    given Condition[1], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[ImageLink1.gif;ImageLink2.gif;ImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then COPY the links and ADD/PASTE them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has boredd at others $getUserVar[boredac] times and been boredd at by others $getUserVar[boreddac] times!}]
+{footer: $username has expressed boredom to others $getUserVar[boredac] times and had boredom expressed to em by others $getUserVar[boreddac] times!}]
     $elseif[$message[1]==bored&&$getUserVar[boredc]==undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*      given that the Condition[1] is false, this condition, called Condition[2], will be run so long as the user agreing has an undefined bored count AND the non-mention reply individual is not the same person running the command. In other words, if you reply to a message but don't use a mention reply while using this command, this code will run, setting the user bored count and user boredat count each to 1       */
         $setUserVar[boredc;1]
         $setUserVar[boredac;1]
@@ -808,9 +808,9 @@ $if[$message[1]==bored&&$getUserVar[boredc]==undefined&&$mentioned[1]!=]/*   Thi
         $if[$getUserVar[boreddac]==undefined]/*      Given condition[2], if the User boreddat count is undefined, the following code will run, setting it to 0.       */
             $setUserVar[boreddac;0]
         $endIf
-        $sendMessage[{description: $username boreds at $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[2], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username expresses boredom to $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[2], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[boredImageLink1.gif;boredImageLink2.gif;boredImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has boredd at others $getUserVar[boredac] times and been boredd at by others $getUserVar[boreddac] times!}]
+{footer: $username has expressed boredom to others $getUserVar[boredac] times and had boredom expressed to em by others $getUserVar[boreddac] times!}]
     $endelseif
     $elseif[$message[1]==bored&&$getUserVar[boredc]==undefined&&$mentioned[1]==]/*         Given that both Condition[1] and Condition[2] are false, this condition, known as Condition[3] will be run, so long as the user boredcount is undefined and user has also NOT mentioned another user to bored at, the following code will run, setting the boredcount to 1 and setting the boredat count to 0.          */
         $setUserVar[boredc;1]
@@ -818,9 +818,9 @@ $if[$message[1]==bored&&$getUserVar[boredc]==undefined&&$mentioned[1]!=]/*   Thi
         $if[$getUserVar[boreddac]==undefined]/*          Given condition [3], if the user's boreddat count is also undefined, the following code will run, setting it to 0.          */
             $setUserVar[boreddac;0]
         $endIf
-        $sendMessage[{description: $username boreds ... }/*          given Condition[3], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username is bored ... }/*          given Condition[3], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[boredImageLink1.gif;boredImageLink2.gif;boredImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has boredd at others $getUserVar[boredac] times and been boredd at by others $getUserVar[boreddac] times!}]
+{footer: $username has expressed boredom to others $getUserVar[boredac] times and had boredom expressed to em by others $getUserVar[boreddac] times!}]
     $endelseif
     $elseif[$message[1]==bored&&$getUserVar[boredc]!=undefined&&$mentioned[1]!=]/*        Given that Conditions[1-3] are false, this condition, known as Condition[4] will be run, so long as the user boredcount IS defined and the user has ALSO tagged someone to bored at (using either the regular @tag or a mentioned reply)        */
         $setUserVar[boredc;$sum[$getUserVar[boredc];1]]
@@ -837,9 +837,9 @@ $if[$message[1]==bored&&$getUserVar[boredc]==undefined&&$mentioned[1]!=]/*   Thi
         $if[$getUserVar[boreddac]==undefined]/*         Given Condition[4], the following code will run so long as the user boredat count is undefined, setting it to 0.         */
             $setUserVar[boreddac;0]
         $endIf
-        $sendMessage[{description: $username boreds at $username[$mentioned[1]] ... }/*          given Condition[4], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username expresses boredom to $username[$mentioned[1]] ... }/*          given Condition[4], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[boredImageLink1.gif;boredImageLink2.gif;boredImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has boredd at others $getUserVar[boredac] times and been boredd at by others $getUserVar[boreddac] times!}]
+{footer: $username has expressed boredom to others $getUserVar[boredac] times and had boredom expressed to em by others $getUserVar[boreddac] times!}]
     $endelseif
     $elseif[$message[1]==bored&&$getUserVar[boredc]!=undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*         Given that Conditions[1-4] are false, this condition, known as Condition[5] will be run so long as the user boredcount IS defined AND the user IS replying to someone who is NOT the original agreing user. In other words, if you reply to any message BESIDES your own message, but you HAVE boredd before, the following code will run, adding one value to the user bored count.           */
         $setUserVar[boredc;$sum[$getUserVar[boredc];1]]
@@ -848,26 +848,26 @@ $if[$message[1]==bored&&$getUserVar[boredc]==undefined&&$mentioned[1]!=]/*   Thi
             $else/*        However, if the user boredat count IS defined, the following code will run, adding one value to the boredat count.        */
                 $setUserVar[boredac;$sum[$getUserVar[boredac];1]]
         $endIf
-        $if[$getUserVar[boreddac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        Given Condition[5], if the user being boredd at has a boreddat count which IS undefined, the following code will run, setting it to 1.       */        */
+        $if[$getUserVar[boreddac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        Given Condition[5], if the user being expressed boredom to has a boreddat count which IS undefined, the following code will run, setting it to 1.       */        */
             $setUserVar[boreddac;1;$msg[$channelid;$referencemessageid;author]]
-            $else/*        However, if the user being boredd at has a boreddat count which IS defined, the following code will run, adding one value to the boreddat count.         */
+            $else/*        However, if the user being expressed boredom to has a boreddat count which IS defined, the following code will run, adding one value to the boreddat count.         */
                 $setUserVar[boreddac;$sum[$getUserVar[boreddac;$msg[$channelid;$referencemessageid;author]];1];$msg[$channelid;$referencemessageid;author]]
         $endIf
         $if[$getUserVar[boreddac]==undefined]/*           Given Condition[5], if the user boreddat count IS undefined, the following code will run, setting it to 0.         */
             $setUserVar[boreddac;0]
         $endIf
-        $sendMessage[{description: $username boreds ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username expresses boredom to $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[boredImageLink1.gif;boredImageLink2.gif;boredImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has boredd at others $getUserVar[boredac] times and been boredd at by others $getUserVar[boreddac] times!}]
+{footer: $username has expressed boredom to others $getUserVar[boredac] times and had boredom expressed to em by others $getUserVar[boreddac] times!}]
     $endelseif
     $elseif[$message[1]==bored&&$getUserVar[boredc]!=undefined&&$mentioned[1]==]/*        Given that Conditions[1-5] are false, the following condition, known as Condition[6], will be run so long as the user bored count IS defined and user did NOT mention anyone, adding one value to the user boredcount.          */
         $setUserVar[boredc;$sum[$getUserVar[boredc];1]]
         $if[$getUserVar[boreddac]==undefined]/*         Given Condition[6], if the user boreddat count is undefined, the following code will be run, setting that count to 0.        */
             $setUserVar[boreddac;0]
         $endIf
-        $sendMessage[{description: $username boreds ... }/*          given Condition[6], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username is bored ... }/*          given Condition[6], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[boredImageLink1.gif;boredImageLink2.gif;boredImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has boredd at others $getUserVar[boredac] times and been boredd at by others $getUserVar[boreddac] times!}]
+{footer: $username has expressed boredom to others $getUserVar[boredac] times and had boredom expressed to em by others $getUserVar[boreddac] times!}]
     $endelseif
 $endIf
 /*endboreds*/
@@ -886,7 +886,7 @@ Condition[5] = User byebyecount(Defined):   True && User Non-Mention Reply: True
 Condition[6] = User byebyecount(Defined):   True && User Mention: False
 
 */
-$if[$message[1]==byebye&&$getUserVar[byebyec]==undefined&&$mentioned[1]!=]/*   This if condition is called Condition[1] and it is for when the user runs the byebye command but has never byebyed (verified by the $getUserVar[byebyec] [byebye count] being undefined) while also mentioning another user (to byebye at) [fyi, the byebyeac var is for counting how many times user has byebyed at another], first setting the byebye count and byebyeat count of the user to 1    */
+$if[$message[1]==byebye&&$getUserVar[byebyec]==undefined&&$mentioned[1]!=]/*   This if condition is called Condition[1] and it is for when the user runs the byebye command but has never byebyed (verified by the $getUserVar[byebyec] [byebye count] being undefined) while also mentioning another user (to byebye at) [fyi, the byebyeac var is for counting how many times user has said goodbye to another], first setting the byebye count and byebyeat count of the user to 1    */
     $setUserVar[byebyec;1]
     $setUserVar[byebyeac;1]
     $if[$getUserVar[byebyedac;$mentioned[1]]==undefined]/* given Condition[1], if the byebyedat count for the person being mentioned is ALSO undefined, the following code will run, setting that count to 1   */
@@ -897,9 +897,9 @@ $if[$message[1]==byebye&&$getUserVar[byebyec]==undefined&&$mentioned[1]!=]/*   T
     $if[$getUserVar[byebyedac]==undefined]/*    given Condition[1], this condition will check to see if the user performing the action has ever been byebyedat before. If not, that count will be set to 0.    */
         $setUserVar[byebyedac;0]
     $endIf
-    $sendMessage[{description: $username byebyes at $username[$mentioned[1]] ... }/*    given Condition[1], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+    $sendMessage[{description: $username says goodbye to $username[$mentioned[1]] ... }/*    given Condition[1], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[ImageLink1.gif;ImageLink2.gif;ImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then COPY the links and ADD/PASTE them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has byebyed at others $getUserVar[byebyeac] times and been byebyed at by others $getUserVar[byebyedac] times!}]
+{footer: $username has said goodbye to others $getUserVar[byebyeac] times and had others say goodbye to em $getUserVar[byebyedac] times!}]
     $elseif[$message[1]==byebye&&$getUserVar[byebyec]==undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*      given that the Condition[1] is false, this condition, called Condition[2], will be run so long as the user agreing has an undefined byebye count AND the non-mention reply individual is not the same person running the command. In other words, if you reply to a message but don't use a mention reply while using this command, this code will run, setting the user byebye count and user byebyeat count each to 1       */
         $setUserVar[byebyec;1]
         $setUserVar[byebyeac;1]
@@ -911,9 +911,9 @@ $if[$message[1]==byebye&&$getUserVar[byebyec]==undefined&&$mentioned[1]!=]/*   T
         $if[$getUserVar[byebyedac]==undefined]/*      Given condition[2], if the User byebyedat count is undefined, the following code will run, setting it to 0.       */
             $setUserVar[byebyedac;0]
         $endIf
-        $sendMessage[{description: $username byebyes at $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[2], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username says goodbye to $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[2], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[byebyeImageLink1.gif;byebyeImageLink2.gif;byebyeImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has byebyed at others $getUserVar[byebyeac] times and been byebyed at by others $getUserVar[byebyedac] times!}]
+{footer: $username has said goodbye to others $getUserVar[byebyeac] times and had others say goodbye to em $getUserVar[byebyedac] times!}]
     $endelseif
     $elseif[$message[1]==byebye&&$getUserVar[byebyec]==undefined&&$mentioned[1]==]/*         Given that both Condition[1] and Condition[2] are false, this condition, known as Condition[3] will be run, so long as the user byebyecount is undefined and user has also NOT mentioned another user to byebye at, the following code will run, setting the byebyecount to 1 and setting the byebyeat count to 0.          */
         $setUserVar[byebyec;1]
@@ -921,9 +921,9 @@ $if[$message[1]==byebye&&$getUserVar[byebyec]==undefined&&$mentioned[1]!=]/*   T
         $if[$getUserVar[byebyedac]==undefined]/*          Given condition [3], if the user's byebyedat count is also undefined, the following code will run, setting it to 0.          */
             $setUserVar[byebyedac;0]
         $endIf
-        $sendMessage[{description: $username byebyes ... }/*          given Condition[3], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username says goodbye ... }/*          given Condition[3], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[byebyeImageLink1.gif;byebyeImageLink2.gif;byebyeImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has byebyed at others $getUserVar[byebyeac] times and been byebyed at by others $getUserVar[byebyedac] times!}]
+{footer: $username has said goodbye to others $getUserVar[byebyeac] times and had others say goodbye to em $getUserVar[byebyedac] times!}]
     $endelseif
     $elseif[$message[1]==byebye&&$getUserVar[byebyec]!=undefined&&$mentioned[1]!=]/*        Given that Conditions[1-3] are false, this condition, known as Condition[4] will be run, so long as the user byebyecount IS defined and the user has ALSO tagged someone to byebye at (using either the regular @tag or a mentioned reply)        */
         $setUserVar[byebyec;$sum[$getUserVar[byebyec];1]]
@@ -940,9 +940,9 @@ $if[$message[1]==byebye&&$getUserVar[byebyec]==undefined&&$mentioned[1]!=]/*   T
         $if[$getUserVar[byebyedac]==undefined]/*         Given Condition[4], the following code will run so long as the user byebyeat count is undefined, setting it to 0.         */
             $setUserVar[byebyedac;0]
         $endIf
-        $sendMessage[{description: $username byebyes at $username[$mentioned[1]] ... }/*          given Condition[4], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username says goodbye to $username[$mentioned[1]] ... }/*          given Condition[4], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[byebyeImageLink1.gif;byebyeImageLink2.gif;byebyeImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has byebyed at others $getUserVar[byebyeac] times and been byebyed at by others $getUserVar[byebyedac] times!}]
+{footer: $username has said goodbye to others $getUserVar[byebyeac] times and had others say goodbye to em $getUserVar[byebyedac] times!}]
     $endelseif
     $elseif[$message[1]==byebye&&$getUserVar[byebyec]!=undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*         Given that Conditions[1-4] are false, this condition, known as Condition[5] will be run so long as the user byebyecount IS defined AND the user IS replying to someone who is NOT the original agreing user. In other words, if you reply to any message BESIDES your own message, but you HAVE byebyed before, the following code will run, adding one value to the user byebye count.           */
         $setUserVar[byebyec;$sum[$getUserVar[byebyec];1]]
@@ -951,29 +951,29 @@ $if[$message[1]==byebye&&$getUserVar[byebyec]==undefined&&$mentioned[1]!=]/*   T
             $else/*        However, if the user byebyeat count IS defined, the following code will run, adding one value to the byebyeat count.        */
                 $setUserVar[byebyeac;$sum[$getUserVar[byebyeac];1]]
         $endIf
-        $if[$getUserVar[byebyedac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        Given Condition[5], if the user being byebyed at has a byebyedat count which IS undefined, the following code will run, setting it to 1.       */        */
+        $if[$getUserVar[byebyedac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        Given Condition[5], if the user being said goodbye to has a byebyedat count which IS undefined, the following code will run, setting it to 1.       */        */
             $setUserVar[byebyedac;1;$msg[$channelid;$referencemessageid;author]]
-            $else/*        However, if the user being byebyed at has a byebyedat count which IS defined, the following code will run, adding one value to the byebyedat count.         */
+            $else/*        However, if the user being said goodbye to has a byebyedat count which IS defined, the following code will run, adding one value to the byebyedat count.         */
                 $setUserVar[byebyedac;$sum[$getUserVar[byebyedac;$msg[$channelid;$referencemessageid;author]];1];$msg[$channelid;$referencemessageid;author]]
         $endIf
         $if[$getUserVar[byebyedac]==undefined]/*           Given Condition[5], if the user byebyedat count IS undefined, the following code will run, setting it to 0.         */
             $setUserVar[byebyedac;0]
         $endIf
-        $sendMessage[{description: $username byebyes ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username says goodbye to $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[byebyeImageLink1.gif;byebyeImageLink2.gif;byebyeImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has byebyed at others $getUserVar[byebyeac] times and been byebyed at by others $getUserVar[byebyedac] times!}]
+{footer: $username has said goodbye to others $getUserVar[byebyeac] times and had others say goodbye to em $getUserVar[byebyedac] times!}]
     $endelseif
     $elseif[$message[1]==byebye&&$getUserVar[byebyec]!=undefined&&$mentioned[1]==]/*        Given that Conditions[1-5] are false, the following condition, known as Condition[6], will be run so long as the user byebye count IS defined and user did NOT mention anyone, adding one value to the user byebyecount.          */
         $setUserVar[byebyec;$sum[$getUserVar[byebyec];1]]
         $if[$getUserVar[byebyedac]==undefined]/*         Given Condition[6], if the user byebyedat count is undefined, the following code will be run, setting that count to 0.        */
             $setUserVar[byebyedac;0]
         $endIf
-        $sendMessage[{description: $username byebyes ... }/*          given Condition[6], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username says goodbye ... }/*          given Condition[6], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[byebyeImageLink1.gif;byebyeImageLink2.gif;byebyeImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has byebyed at others $getUserVar[byebyeac] times and been byebyed at by others $getUserVar[byebyedac] times!}]
+{footer: $username has said goodbye to others $getUserVar[byebyeac] times and had others say goodbye to em $getUserVar[byebyedac] times!}]
     $endelseif
 $endIf
-/*endbyebyes*/
+/*endgoodbyes*/
 /*
 
 Here is where the carry action command begins:
