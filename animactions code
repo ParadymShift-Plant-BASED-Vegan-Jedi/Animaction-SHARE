@@ -1195,7 +1195,7 @@ Condition[5] = User comfortcount(Defined):   True && User Non-Mention Reply: Tru
 Condition[6] = User comfortcount(Defined):   True && User Mention: False
 
 */
-$if[$message[1]==comfort&&$getUserVar[comfortc]==undefined&&$mentioned[1]!=]/*   This if condition is called Condition[1] and it is for when the user runs the comfort command but has never comfortd (verified by the $getUserVar[comfortc] [comfort count] being undefined) while also mentioning another user (to comfort at) [fyi, the comfortac var is for counting how many times user has comfortd at another], first setting the comfort count and comfortat count of the user to 1    */
+$if[$message[1]==comfort&&$getUserVar[comfortc]==undefined&&$mentioned[1]!=]/*   This if condition is called Condition[1] and it is for when the user runs the comfort command but has never comfortd (verified by the $getUserVar[comfortc] [comfort count] being undefined) while also mentioning another user (to comfort at) [fyi, the comfortac var is for counting how many times user has comforted another], first setting the comfort count and comfortat count of the user to 1    */
     $setUserVar[comfortc;1]
     $setUserVar[comfortac;1]
     $if[$getUserVar[comfortdac;$mentioned[1]]==undefined]/* given Condition[1], if the comfortdat count for the person being mentioned is ALSO undefined, the following code will run, setting that count to 1   */
@@ -1206,9 +1206,9 @@ $if[$message[1]==comfort&&$getUserVar[comfortc]==undefined&&$mentioned[1]!=]/*  
     $if[$getUserVar[comfortdac]==undefined]/*    given Condition[1], this condition will check to see if the user performing the action has ever been comfortdat before. If not, that count will be set to 0.    */
         $setUserVar[comfortdac;0]
     $endIf
-    $sendMessage[{description: $username comforts at $username[$mentioned[1]] ... }/*    given Condition[1], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+    $sendMessage[{description: $username comforts $username[$mentioned[1]] ... }/*    given Condition[1], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[ImageLink1.gif;ImageLink2.gif;ImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then COPY the links and ADD/PASTE them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has comfortd at others $getUserVar[comfortac] times and been comfortd at by others $getUserVar[comfortdac] times!}]
+{footer: $username has comforted others $getUserVar[comfortac] times and been comforted by others $getUserVar[comfortdac] times!}]
     $elseif[$message[1]==comfort&&$getUserVar[comfortc]==undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*      given that the Condition[1] is false, this condition, called Condition[2], will be run so long as the user agreing has an undefined comfort count AND the non-mention reply individual is not the same person running the command. In other words, if you reply to a message but don't use a mention reply while using this command, this code will run, setting the user comfort count and user comfortat count each to 1       */
         $setUserVar[comfortc;1]
         $setUserVar[comfortac;1]
@@ -1220,9 +1220,9 @@ $if[$message[1]==comfort&&$getUserVar[comfortc]==undefined&&$mentioned[1]!=]/*  
         $if[$getUserVar[comfortdac]==undefined]/*      Given condition[2], if the User comfortdat count is undefined, the following code will run, setting it to 0.       */
             $setUserVar[comfortdac;0]
         $endIf
-        $sendMessage[{description: $username comforts at $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[2], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username comforts $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[2], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[comfortImageLink1.gif;comfortImageLink2.gif;comfortImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has comfortd at others $getUserVar[comfortac] times and been comfortd at by others $getUserVar[comfortdac] times!}]
+{footer: $username has comforted others $getUserVar[comfortac] times and been comforted by others $getUserVar[comfortdac] times!}]
     $endelseif
     $elseif[$message[1]==comfort&&$getUserVar[comfortc]==undefined&&$mentioned[1]==]/*         Given that both Condition[1] and Condition[2] are false, this condition, known as Condition[3] will be run, so long as the user comfortcount is undefined and user has also NOT mentioned another user to comfort at, the following code will run, setting the comfortcount to 1 and setting the comfortat count to 0.          */
         $setUserVar[comfortc;1]
@@ -1232,7 +1232,7 @@ $if[$message[1]==comfort&&$getUserVar[comfortc]==undefined&&$mentioned[1]!=]/*  
         $endIf
         $sendMessage[{description: $username comforts ... }/*          given Condition[3], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[comfortImageLink1.gif;comfortImageLink2.gif;comfortImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has comfortd at others $getUserVar[comfortac] times and been comfortd at by others $getUserVar[comfortdac] times!}]
+{footer: $username has comforted others $getUserVar[comfortac] times and been comforted by others $getUserVar[comfortdac] times!}]
     $endelseif
     $elseif[$message[1]==comfort&&$getUserVar[comfortc]!=undefined&&$mentioned[1]!=]/*        Given that Conditions[1-3] are false, this condition, known as Condition[4] will be run, so long as the user comfortcount IS defined and the user has ALSO tagged someone to comfort at (using either the regular @tag or a mentioned reply)        */
         $setUserVar[comfortc;$sum[$getUserVar[comfortc];1]]
@@ -1249,9 +1249,9 @@ $if[$message[1]==comfort&&$getUserVar[comfortc]==undefined&&$mentioned[1]!=]/*  
         $if[$getUserVar[comfortdac]==undefined]/*         Given Condition[4], the following code will run so long as the user comfortat count is undefined, setting it to 0.         */
             $setUserVar[comfortdac;0]
         $endIf
-        $sendMessage[{description: $username comforts at $username[$mentioned[1]] ... }/*          given Condition[4], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+        $sendMessage[{description: $username comforts $username[$mentioned[1]] ... }/*          given Condition[4], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[comfortImageLink1.gif;comfortImageLink2.gif;comfortImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has comfortd at others $getUserVar[comfortac] times and been comfortd at by others $getUserVar[comfortdac] times!}]
+{footer: $username has comforted others $getUserVar[comfortac] times and been comforted by others $getUserVar[comfortdac] times!}]
     $endelseif
     $elseif[$message[1]==comfort&&$getUserVar[comfortc]!=undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*         Given that Conditions[1-4] are false, this condition, known as Condition[5] will be run so long as the user comfortcount IS defined AND the user IS replying to someone who is NOT the original agreing user. In other words, if you reply to any message BESIDES your own message, but you HAVE comfortd before, the following code will run, adding one value to the user comfort count.           */
         $setUserVar[comfortc;$sum[$getUserVar[comfortc];1]]
@@ -1260,9 +1260,9 @@ $if[$message[1]==comfort&&$getUserVar[comfortc]==undefined&&$mentioned[1]!=]/*  
             $else/*        However, if the user comfortat count IS defined, the following code will run, adding one value to the comfortat count.        */
                 $setUserVar[comfortac;$sum[$getUserVar[comfortac];1]]
         $endIf
-        $if[$getUserVar[comfortdac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        Given Condition[5], if the user being comfortd at has a comfortdat count which IS undefined, the following code will run, setting it to 1.       */        */
+        $if[$getUserVar[comfortdac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        Given Condition[5], if the user being comforted has a comfortdat count which IS undefined, the following code will run, setting it to 1.       */        */
             $setUserVar[comfortdac;1;$msg[$channelid;$referencemessageid;author]]
-            $else/*        However, if the user being comfortd at has a comfortdat count which IS defined, the following code will run, adding one value to the comfortdat count.         */
+            $else/*        However, if the user being comforted has a comfortdat count which IS defined, the following code will run, adding one value to the comfortdat count.         */
                 $setUserVar[comfortdac;$sum[$getUserVar[comfortdac;$msg[$channelid;$referencemessageid;author]];1];$msg[$channelid;$referencemessageid;author]]
         $endIf
         $if[$getUserVar[comfortdac]==undefined]/*           Given Condition[5], if the user comfortdat count IS undefined, the following code will run, setting it to 0.         */
@@ -1270,7 +1270,7 @@ $if[$message[1]==comfort&&$getUserVar[comfortc]==undefined&&$mentioned[1]!=]/*  
         $endIf
         $sendMessage[{description: $username comforts ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[comfortImageLink1.gif;comfortImageLink2.gif;comfortImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has comfortd at others $getUserVar[comfortac] times and been comfortd at by others $getUserVar[comfortdac] times!}]
+{footer: $username has comforted others $getUserVar[comfortac] times and been comforted by others $getUserVar[comfortdac] times!}]
     $endelseif
     $elseif[$message[1]==comfort&&$getUserVar[comfortc]!=undefined&&$mentioned[1]==]/*        Given that Conditions[1-5] are false, the following condition, known as Condition[6], will be run so long as the user comfort count IS defined and user did NOT mention anyone, adding one value to the user comfortcount.          */
         $setUserVar[comfortc;$sum[$getUserVar[comfortc];1]]
@@ -1279,7 +1279,7 @@ $if[$message[1]==comfort&&$getUserVar[comfortc]==undefined&&$mentioned[1]!=]/*  
         $endIf
         $sendMessage[{description: $username comforts ... }/*          given Condition[6], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
 {image:$randomText[{image:$randomText[comfortImageLink1.gif;comfortImageLink2.gif;comfortImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has comfortd at others $getUserVar[comfortac] times and been comfortd at by others $getUserVar[comfortdac] times!}]
+{footer: $username has comforted others $getUserVar[comfortac] times and been comforted by others $getUserVar[comfortdac] times!}]
     $endelseif
 $endIf
 /*endcomforts*/
