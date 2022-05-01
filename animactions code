@@ -2018,7 +2018,14 @@ Condition[4] = User evilpleasurecount(Defined):   True && User Mention: True
 Condition[5] = User evilpleasurecount(Defined):   True && User Non-Mention Reply: True
 Condition[6] = User evilpleasurecount(Defined):   True && User Mention: False
 
+Furthermore, the image links are now conveniently stored in the following server variables. That way you only have to add the links one time and then you're all set! (as opposed to 6 different times, yikes!) You'll see those variables just below this message!
 */
+$if[$message[1]==evilpleasure]
+	$setServerVar[evilpleasureImageLink1;YourFIRSTLinkGoesHere.gif]
+	$setServerVar[evilpleasureImageLink2;YourSECONDLinkGoesHere.gif]
+	$setServerVar[evilpleasureImageLink3;YourTHIRDLinkGoesHere.gif]
+	/*etc. Feel free to add as many GIFs as you like!*/
+$endif
 $if[$message[1]==evilpleasure&&$getUserVar[evilpleasurec]==undefined&&$mentioned[1]!=]/*   This if condition is called Condition[1] and it is for when the user runs the evilpleasure command but has never evilpleasured (verified by the $getUserVar[evilpleasurec] [evilpleasure count] being undefined) while also mentioning another user (to evilpleasure at) [fyi, the evilpleasureac var is for counting how many times user has expressed evil pleasure to another], first setting the evilpleasure count and evilpleasureat count of the user to 1    */
     $setUserVar[evilpleasurec;1]
     $setUserVar[evilpleasureac;1]
@@ -2031,7 +2038,7 @@ $if[$message[1]==evilpleasure&&$getUserVar[evilpleasurec]==undefined&&$mentioned
         $setUserVar[evilpleasuredac;0]
     $endIf
     $sendMessage[{description: $username expresses evil pleasure to $username[$mentioned[1]] ... }/*    given Condition[1], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
-{image:$randomText[ImageLink1.gif;ImageLink2.gif;ImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then COPY the links and ADD/PASTE them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
+{image:$randomText[$getServerVar[evilpleasureImageLink1];$getServerVar[evilpleasureImageLink2];$getUserVar[evilpleasureImageLink3]... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then COPY the links and ADD/PASTE them at the top yourself, THEN add in the Server Variables to match!! (I've added the first 3 for you as an example)        THANK YOU!!     */
 {footer: $username has expressed evil pleasure to others $getUserVar[evilpleasureac] times and has had evil pleasure expressed by others $getUserVar[evilpleasuredac] times!}]
     $elseif[$message[1]==evilpleasure&&$getUserVar[evilpleasurec]==undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*      given that the Condition[1] is false, this condition, called Condition[2], will be run so long as the user agreing has an undefined evilpleasure count AND the non-mention reply individual is not the same person running the command. In other words, if you reply to a message but don't use a mention reply while using this command, this code will run, setting the user evilpleasure count and user evilpleasureat count each to 1       */
         $setUserVar[evilpleasurec;1]
@@ -2045,7 +2052,7 @@ $if[$message[1]==evilpleasure&&$getUserVar[evilpleasurec]==undefined&&$mentioned
             $setUserVar[evilpleasuredac;0]
         $endIf
         $sendMessage[{description: $username expresses evil pleasure to $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[2], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
-{image:$randomText[{image:$randomText[evilpleasureImageLink1.gif;evilpleasureImageLink2.gif;evilpleasureImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
+{image:$randomText[$getServerVar[evilpleasureImageLink1];$getServerVar[evilpleasureImageLink2];$getServerVar[evilpleasureImageLink3]... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then COPY the links and ADD/PASTE them at the top yourself, THEN add in the Server Variables to match!! (I've added the first 3 for you as an example)        THANK YOU!!     */
 {footer: $username has expressed evil pleasure to others $getUserVar[evilpleasureac] times and has had evil pleasure expressed by others $getUserVar[evilpleasuredac] times!}]
     $endelseif
     $elseif[$message[1]==evilpleasure&&$getUserVar[evilpleasurec]==undefined&&$mentioned[1]==]/*         Given that both Condition[1] and Condition[2] are false, this condition, known as Condition[3] will be run, so long as the user evilpleasurecount is undefined and user has also NOT mentioned another user to evilpleasure at, the following code will run, setting the evilpleasurecount to 1 and setting the evilpleasureat count to 0.          */
@@ -2055,7 +2062,7 @@ $if[$message[1]==evilpleasure&&$getUserVar[evilpleasurec]==undefined&&$mentioned
             $setUserVar[evilpleasuredac;0]
         $endIf
         $sendMessage[{description: $username expresses evil pleasure ... }/*          given Condition[3], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
-{image:$randomText[{image:$randomText[evilpleasureImageLink1.gif;evilpleasureImageLink2.gif;evilpleasureImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
+{image:$randomText[$getServerVar[evilpleasureImageLink1];$getServerVar[evilpleasureImageLink2];$getServerVar[evilpleasureImageLink3]... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then COPY the links and ADD/PASTE them at the top yourself, THEN add in the Server Variables to match!! (I've added the first 3 for you as an example)        THANK YOU!!     */
 {footer: $username has expressed evil pleasure to others $getUserVar[evilpleasureac] times and has had evil pleasure expressed by others $getUserVar[evilpleasuredac] times!}]
     $endelseif
     $elseif[$message[1]==evilpleasure&&$getUserVar[evilpleasurec]!=undefined&&$mentioned[1]!=]/*        Given that Conditions[1-3] are false, this condition, known as Condition[4] will be run, so long as the user evilpleasurecount IS defined and the user has ALSO tagged someone to evilpleasure at (using either the regular @tag or a mentioned reply)        */
@@ -2074,7 +2081,7 @@ $if[$message[1]==evilpleasure&&$getUserVar[evilpleasurec]==undefined&&$mentioned
             $setUserVar[evilpleasuredac;0]
         $endIf
         $sendMessage[{description: $username expresses evil pleasure to $username[$mentioned[1]] ... }/*          given Condition[4], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
-{image:$randomText[{image:$randomText[evilpleasureImageLink1.gif;evilpleasureImageLink2.gif;evilpleasureImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
+{image:$randomText[$getServerVar[evilpleasureImageLink1];$getServerVar[evilpleasureImageLink2];$getServerVar[evilpleasureImageLink3]... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then COPY the links and ADD/PASTE them at the top yourself, THEN add in the Server Variables to match!! (I've added the first 3 for you as an example)        THANK YOU!!     */
 {footer: $username has expressed evil pleasure to others $getUserVar[evilpleasureac] times and has had evil pleasure expressed by others $getUserVar[evilpleasuredac] times!}]
     $endelseif
     $elseif[$message[1]==evilpleasure&&$getUserVar[evilpleasurec]!=undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*         Given that Conditions[1-4] are false, this condition, known as Condition[5] will be run so long as the user evilpleasurecount IS defined AND the user IS replying to someone who is NOT the original agreing user. In other words, if you reply to any message BESIDES your own message, but you HAVE evilpleasured before, the following code will run, adding one value to the user evilpleasure count.           */
@@ -2093,7 +2100,7 @@ $if[$message[1]==evilpleasure&&$getUserVar[evilpleasurec]==undefined&&$mentioned
             $setUserVar[evilpleasuredac;0]
         $endIf
         $sendMessage[{description: $username expresses evil pleasure to $msg[$channelid;$referencemessageid;author]... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
-{image:$randomText[{image:$randomText[evilpleasureImageLink1.gif;evilpleasureImageLink2.gif;evilpleasureImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
+{image:$randomText[{image:$randomText[$getServerVar[evilpleasureImageLink1];$getServerVar[evilpleasureImageLink2];$getServerVar[evilpleasureImageLink3]... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then COPY the links and ADD/PASTE them at the top yourself, THEN add in the Server Variables to match!! (I've added the first 3 for you as an example)        THANK YOU!!     */
 {footer: $username has expressed evil pleasure to others $getUserVar[evilpleasureac] times and has had evil pleasure expressed by others $getUserVar[evilpleasuredac] times!}]
     $endelseif
     $elseif[$message[1]==evilpleasure&&$getUserVar[evilpleasurec]!=undefined&&$mentioned[1]==]/*        Given that Conditions[1-5] are false, the following condition, known as Condition[6], will be run so long as the user evilpleasure count IS defined and user did NOT mention anyone, adding one value to the user evilpleasurecount.          */
@@ -2102,7 +2109,7 @@ $if[$message[1]==evilpleasure&&$getUserVar[evilpleasurec]==undefined&&$mentioned
             $setUserVar[evilpleasuredac;0]
         $endIf
         $sendMessage[{description: $username expresses evil pleasure ... }/*          given Condition[6], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
-{image:$randomText[{image:$randomText[evilpleasureImageLink1.gif;evilpleasureImageLink2.gif;evilpleasureImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
+{image:$randomText[$getServerVar[evilpleasureImageLink1];$getServerVar[evilpleasureImageLink2];$getServerVar[evilpleasureImageLink3];... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then COPY the links and ADD/PASTE them at the top yourself, THEN add in the Server Variables to match!! (I've added the first 3 for you as an example)        THANK YOU!!     */
 {footer: $username has expressed evil pleasure to others $getUserVar[evilpleasureac] times and has had evil pleasure expressed by others $getUserVar[evilpleasuredac] times!}]
     $endelseif
 $endIf
@@ -2121,92 +2128,99 @@ Condition[4] = User excitedcount(Defined):   True && User Mention: True
 Condition[5] = User excitedcount(Defined):   True && User Non-Mention Reply: True
 Condition[6] = User excitedcount(Defined):   True && User Mention: False
 
+Furthermore, the image links are now conveniently stored in the following server variables. That way you only have to add the links one time and then you're all set! (as opposed to 6 different times, yikes!) You'll see those variables just below this message!
 */
-$if[$message[1]==excited&&$getUserVar[excitedc]==undefined&&$mentioned[1]!=]/*   This if condition is called Condition[1] and it is for when the user runs the excited command but has never stoked (verified by the $getUserVar[excitedc] [excited count] being undefined) while also mentioning another user (to excited at) [fyi, the excitedac var is for counting how many times user has stoked at another], first setting the excited count and excitedat count of the user to 1    */
+$if[$message[1]==excited]
+	$setServerVar[excitedImageLink1;YourFIRSTLinkGoesHere.gif]
+	$setServerVar[excitedImageLink2;YourSECONDLinkGoesHere.gif]
+	$setServerVar[excitedImageLink3;YourTHIRDLinkGoesHere.gif]
+	/*etc. Feel free to add as many GIFs as you like!*/
+$endif
+$if[$message[1]==excited&&$getUserVar[excitedc]==undefined&&$mentioned[1]!=]/*   This if condition is called Condition[1] and it is for when the user runs the excited command but has never excited (verified by the $getUserVar[excitedc] [excited count] being undefined) while also mentioning another user (to expressed excitement to) [fyi, the excitedac var is for counting how many times user has expressed excitement to another], first setting the excited count and excitedat count of the user to 1    */
     $setUserVar[excitedc;1]
     $setUserVar[excitedac;1]
-    $if[$getUserVar[stokedac;$mentioned[1]]==undefined]/* given Condition[1], if the stokedat count for the person being mentioned is ALSO undefined, the following code will run, setting that count to 1   */
-        $setUserVar[stokedac;1;$mentioned[1]]
-        $else/*       If the person being mentioned has a stokedat count which IS defined, then the following code will run, ending the condition for when the person being mentioned has a stokedat count which is ALSO undefined by adding a stokedat count to the already defined count variable     */
-        $setUserVar[stokedac;$sum[$getUserVar[stokedac;$mentioned[1]];1];$mentioned[1]]
+    $if[$getUserVar[excitedac;$mentioned[1]]==undefined]/* given Condition[1], if the excitedat count for the person being mentioned is ALSO undefined, the following code will run, setting that count to 1   */
+        $setUserVar[excitedac;1;$mentioned[1]]
+        $else/*       If the person being mentioned has a excitedat count which IS defined, then the following code will run, ending the condition for when the person being mentioned has a excitedat count which is ALSO undefined by adding a excitedat count to the already defined count variable     */
+        $setUserVar[excitedac;$sum[$getUserVar[excitedac;$mentioned[1]];1];$mentioned[1]]
     $endIf
-    $if[$getUserVar[stokedac]==undefined]/*    given Condition[1], this condition will check to see if the user performing the action has ever been stokedat before. If not, that count will be set to 0.    */
-        $setUserVar[stokedac;0]
+    $if[$getUserVar[excitedac]==undefined]/*    given Condition[1], this condition will check to see if the user performing the action has ever been excitedat before. If not, that count will be set to 0.    */
+        $setUserVar[excitedac;0]
     $endIf
-    $sendMessage[{description: $username exciteds at $username[$mentioned[1]] ... }/*    given Condition[1], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
-{image:$randomText[ImageLink1.gif;ImageLink2.gif;ImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then COPY the links and ADD/PASTE them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has stoked at others $getUserVar[excitedac] times and been stoked at by others $getUserVar[stokedac] times!}]
+    $sendMessage[{description: $username expresses excitement to $username[$mentioned[1]] ... }/*    given Condition[1], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+{image:$randomText[$getServerVar[excitedImageLink1];$getServerVar[excitedImageLink2];$getServerVar[excitedImageLink3];... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then COPY the links and ADD/PASTE them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
+{footer: $username has expressed excitement to others $getUserVar[excitedac] times and has had excitement expressed by others $getUserVar[excitedac] times!}]
     $elseif[$message[1]==excited&&$getUserVar[excitedc]==undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*      given that the Condition[1] is false, this condition, called Condition[2], will be run so long as the user agreing has an undefined excited count AND the non-mention reply individual is not the same person running the command. In other words, if you reply to a message but don't use a mention reply while using this command, this code will run, setting the user excited count and user excitedat count each to 1       */
         $setUserVar[excitedc;1]
         $setUserVar[excitedac;1]
-        $if[$getUserVar[stokedac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        given Condition[2], if the stokedat count of the person being replied (without a mention) to is undefined, the following code will run, setting the stokedat count to 1       */
-            $setUserVar[stokedac;1;$msg[$channelid;$referencemessageid;author]]
-            $else/*      But, if the stokedat count of the user being replied (without a mention) to IS defined, the following code will run, ending the condition for when the person being replied (without a mention) to has a stokedat count which is undefined by adding a count to this user's already pre-defined stokedat count       */ 
-                $setUserVar[stokedac;$sum[$getUserVar[stokedac;$msg[$channelid;$referencemessageid;author]];1];$msg[$channelid;$referencemessageid;author]]
+        $if[$getUserVar[excitedac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        given Condition[2], if the excitedat count of the person being replied (without a mention) to is undefined, the following code will run, setting the excitedat count to 1       */
+            $setUserVar[excitedac;1;$msg[$channelid;$referencemessageid;author]]
+            $else/*      But, if the excitedat count of the user being replied (without a mention) to IS defined, the following code will run, ending the condition for when the person being replied (without a mention) to has a excitedat count which is undefined by adding a count to this user's already pre-defined excitedat count       */ 
+                $setUserVar[excitedac;$sum[$getUserVar[excitedac;$msg[$channelid;$referencemessageid;author]];1];$msg[$channelid;$referencemessageid;author]]
         $endIf
-        $if[$getUserVar[stokedac]==undefined]/*      Given condition[2], if the User stokedat count is undefined, the following code will run, setting it to 0.       */
-            $setUserVar[stokedac;0]
+        $if[$getUserVar[excitedac]==undefined]/*      Given condition[2], if the User excitedat count is undefined, the following code will run, setting it to 0.       */
+            $setUserVar[excitedac;0]
         $endIf
-        $sendMessage[{description: $username exciteds at $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[2], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
-{image:$randomText[{image:$randomText[excitedImageLink1.gif;excitedImageLink2.gif;excitedImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has stoked at others $getUserVar[excitedac] times and been stoked at by others $getUserVar[stokedac] times!}]
+        $sendMessage[{description: $username expresses excitement to $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[2], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+{image:$randomText[$getServerVar[excitedImageLink1];$getServerVar[excitedImageLink2];$getServerVar[excitedImageLink3];... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then COPY the links and ADD/PASTE them at the top yourself, THEN add in the Server Variables to match!! (I've added the first 3 for you as an example)        THANK YOU!!     */
+{footer: $username has expressed excitement to others $getUserVar[excitedac] times and has had excitement expressed by others $getUserVar[excitedac] times!}]
     $endelseif
-    $elseif[$message[1]==excited&&$getUserVar[excitedc]==undefined&&$mentioned[1]==]/*         Given that both Condition[1] and Condition[2] are false, this condition, known as Condition[3] will be run, so long as the user excitedcount is undefined and user has also NOT mentioned another user to excited at, the following code will run, setting the excitedcount to 1 and setting the excitedat count to 0.          */
+    $elseif[$message[1]==excited&&$getUserVar[excitedc]==undefined&&$mentioned[1]==]/*         Given that both Condition[1] and Condition[2] are false, this condition, known as Condition[3] will be run, so long as the user excitedcount is undefined and user has also NOT mentioned another user to expressed excitement to, the following code will run, setting the excitedcount to 1 and setting the excitedat count to 0.          */
         $setUserVar[excitedc;1]
         $setUserVar[excitedac;0]
-        $if[$getUserVar[stokedac]==undefined]/*          Given condition [3], if the user's stokedat count is also undefined, the following code will run, setting it to 0.          */
-            $setUserVar[stokedac;0]
+        $if[$getUserVar[excitedac]==undefined]/*          Given condition [3], if the user's excitedat count is also undefined, the following code will run, setting it to 0.          */
+            $setUserVar[excitedac;0]
         $endIf
-        $sendMessage[{description: $username exciteds ... }/*          given Condition[3], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
-{image:$randomText[{image:$randomText[excitedImageLink1.gif;excitedImageLink2.gif;excitedImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has stoked at others $getUserVar[excitedac] times and been stoked at by others $getUserVar[stokedac] times!}]
+        $sendMessage[{description: $username expresses excitement ... }/*          given Condition[3], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+{image:$randomText[$getServerVar[excitedImageLink1];$getServerVar[excitedImageLink2];$getServerVar[excitedImageLink3];... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then COPY the links and ADD/PASTE them at the top yourself, THEN add in the Server Variables to match!! (I've added the first 3 for you as an example)        THANK YOU!!     */
+{footer: $username has expressed excitement to others $getUserVar[excitedac] times and has had excitement expressed by others $getUserVar[excitedac] times!}]
     $endelseif
-    $elseif[$message[1]==excited&&$getUserVar[excitedc]!=undefined&&$mentioned[1]!=]/*        Given that Conditions[1-3] are false, this condition, known as Condition[4] will be run, so long as the user excitedcount IS defined and the user has ALSO tagged someone to excited at (using either the regular @tag or a mentioned reply)        */
+    $elseif[$message[1]==excited&&$getUserVar[excitedc]!=undefined&&$mentioned[1]!=]/*        Given that Conditions[1-3] are false, this condition, known as Condition[4] will be run, so long as the user excitedcount IS defined and the user has ALSO tagged someone to expressed excitement to (using either the regular @tag or a mentioned reply)        */
         $setUserVar[excitedc;$sum[$getUserVar[excitedc];1]]
         $if[$getUserVar[excitedac]==undefined]/*        Given Condition[4], this condition will run so long as the user excitedat count is undefined, setting it to 1        */
             $setUserVar[excitedac;1]
             $else/*      Given Condition[4], if the user excitedat count IS defined, the following code will be run, updating the excitedat count by adding one value to the var        */
                 $setUserVar[excitedac;$sum[$getUserVar[excitedac];1]]
         $endIf
-        $if[$getUserVar[stokedac;$mentioned[1]]==undefined]/*       Given Condition[4], if the stokedat count of the person being tagged is undefined, the following code will run, setting it to 1        */
-            $setUserVar[stokedac;1;$mentioned[1]]
-            $else/*       Given Condition[4], if the stokedat count of the person being tagged IS defined, the following code will be run, updating the stokedat var by adding one value to the var       */
-                $setUserVar[stokedac;$sum[$getUserVar[stokedac;$mentioned[1]];1];$mentioned[1]]
+        $if[$getUserVar[excitedac;$mentioned[1]]==undefined]/*       Given Condition[4], if the excitedat count of the person being tagged is undefined, the following code will run, setting it to 1        */
+            $setUserVar[excitedac;1;$mentioned[1]]
+            $else/*       Given Condition[4], if the excitedat count of the person being tagged IS defined, the following code will be run, updating the excitedat var by adding one value to the var       */
+                $setUserVar[excitedac;$sum[$getUserVar[excitedac;$mentioned[1]];1];$mentioned[1]]
         $endIf
-        $if[$getUserVar[stokedac]==undefined]/*         Given Condition[4], the following code will run so long as the user excitedat count is undefined, setting it to 0.         */
-            $setUserVar[stokedac;0]
+        $if[$getUserVar[excitedac]==undefined]/*         Given Condition[4], the following code will run so long as the user excitedat count is undefined, setting it to 0.         */
+            $setUserVar[excitedac;0]
         $endIf
-        $sendMessage[{description: $username exciteds at $username[$mentioned[1]] ... }/*          given Condition[4], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
-{image:$randomText[{image:$randomText[excitedImageLink1.gif;excitedImageLink2.gif;excitedImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has stoked at others $getUserVar[excitedac] times and been stoked at by others $getUserVar[stokedac] times!}]
+        $sendMessage[{description: $username expresses excitement to $username[$mentioned[1]] ... }/*          given Condition[4], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+{image:$randomText[$getServerVar[excitedImageLink1];$getServerVar[excitedImageLink2];$getServerVar[excitedImageLink3];... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then COPY the links and ADD/PASTE them at the top yourself, THEN add in the Server Variables to match!! (I've added the first 3 for you as an example)        THANK YOU!!     */
+{footer: $username has expressed excitement to others $getUserVar[excitedac] times and has had excitement expressed by others $getUserVar[excitedac] times!}]
     $endelseif
-    $elseif[$message[1]==excited&&$getUserVar[excitedc]!=undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*         Given that Conditions[1-4] are false, this condition, known as Condition[5] will be run so long as the user excitedcount IS defined AND the user IS replying to someone who is NOT the original agreing user. In other words, if you reply to any message BESIDES your own message, but you HAVE stoked before, the following code will run, adding one value to the user excited count.           */
+    $elseif[$message[1]==excited&&$getUserVar[excitedc]!=undefined&&$msg[$channelid;$referencemessageid;author]!=$authorID]/*         Given that Conditions[1-4] are false, this condition, known as Condition[5] will be run so long as the user excitedcount IS defined AND the user IS replying to someone who is NOT the original agreing user. In other words, if you reply to any message BESIDES your own message, but you HAVE excited before, the following code will run, adding one value to the user excited count.           */
         $setUserVar[excitedc;$sum[$getUserVar[excitedc];1]]
         $if[$getUserVar[excitedac]==undefined]/*        Given Condition[5], if the user excitedat count is undefined, the following code will run, setting it to 1.        */
             $setUserVar[excitedac;1]
             $else/*        However, if the user excitedat count IS defined, the following code will run, adding one value to the excitedat count.        */
                 $setUserVar[excitedac;$sum[$getUserVar[excitedac];1]]
         $endIf
-        $if[$getUserVar[stokedac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        Given Condition[5], if the user being stoked at has a stokedat count which IS undefined, the following code will run, setting it to 1.       */        */
-            $setUserVar[stokedac;1;$msg[$channelid;$referencemessageid;author]]
-            $else/*        However, if the user being stoked at has a stokedat count which IS defined, the following code will run, adding one value to the stokedat count.         */
-                $setUserVar[stokedac;$sum[$getUserVar[stokedac;$msg[$channelid;$referencemessageid;author]];1];$msg[$channelid;$referencemessageid;author]]
+        $if[$getUserVar[excitedac;$msg[$channelid;$referencemessageid;author]]==undefined]/*        Given Condition[5], if the user being expressed excitement to has a excitedat count which IS undefined, the following code will run, setting it to 1.       */        */
+            $setUserVar[excitedac;1;$msg[$channelid;$referencemessageid;author]]
+            $else/*        However, if the user being expressed excitement to has a excitedat count which IS defined, the following code will run, adding one value to the excitedat count.         */
+                $setUserVar[excitedac;$sum[$getUserVar[excitedac;$msg[$channelid;$referencemessageid;author]];1];$msg[$channelid;$referencemessageid;author]]
         $endIf
-        $if[$getUserVar[stokedac]==undefined]/*           Given Condition[5], if the user stokedat count IS undefined, the following code will run, setting it to 0.         */
-            $setUserVar[stokedac;0]
+        $if[$getUserVar[excitedac]==undefined]/*           Given Condition[5], if the user excitedat count IS undefined, the following code will run, setting it to 0.         */
+            $setUserVar[excitedac;0]
         $endIf
-        $sendMessage[{description: $username exciteds ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
-{image:$randomText[{image:$randomText[excitedImageLink1.gif;excitedImageLink2.gif;excitedImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has stoked at others $getUserVar[excitedac] times and been stoked at by others $getUserVar[stokedac] times!}]
+        $sendMessage[{description: $username expresses excitement to $username[$msg[$channelid;$referencemessageid;author]] ... }/*          given Condition[5], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+{image:$randomText[$getServerVar[excitedImageLink1];$getServerVar[excitedImageLink2];$getServerVar[excitedImageLink3];... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then COPY the links and ADD/PASTE them at the top yourself, THEN add in the Server Variables to match!! (I've added the first 3 for you as an example)        THANK YOU!!     */
+{footer: $username has expressed excitement to others $getUserVar[excitedac] times and has had excitement expressed by others $getUserVar[excitedac] times!}]
     $endelseif
     $elseif[$message[1]==excited&&$getUserVar[excitedc]!=undefined&&$mentioned[1]==]/*        Given that Conditions[1-5] are false, the following condition, known as Condition[6], will be run so long as the user excited count IS defined and user did NOT mention anyone, adding one value to the user excitedcount.          */
         $setUserVar[excitedc;$sum[$getUserVar[excitedc];1]]
-        $if[$getUserVar[stokedac]==undefined]/*         Given Condition[6], if the user stokedat count is undefined, the following code will be run, setting that count to 0.        */
-            $setUserVar[stokedac;0]
+        $if[$getUserVar[excitedac]==undefined]/*         Given Condition[6], if the user excitedat count is undefined, the following code will be run, setting that count to 0.        */
+            $setUserVar[excitedac;0]
         $endIf
-        $sendMessage[{description: $username exciteds ... }/*          given Condition[6], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
-{image:$randomText[{image:$randomText[excitedImageLink1.gif;excitedImageLink2.gif;excitedImageLink3.gif... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then copy the links and add them here yourself!! (hence the placeholder links like ImageLink.gif)        THANK YOU!!     */
-{footer: $username has stoked at others $getUserVar[excitedac] times and been stoked at by others $getUserVar[stokedac] times!}]
+        $sendMessage[{description: $username expresses excitement ... }/*          given Condition[6], this action message embed will be sent (THIS IS WHERE THE MAGIC HAPPENS)!          */
+{image:$randomText[$getServerVar[excitedImageLink1];$getServerVar[excitedImageLink2];$getServerVar[excitedImageLink3];... etc.]}/*         PLEASE NOTE: You MUST first UPLOAD the .gif action images into your Discord server, then COPY the links and ADD/PASTE them at the top yourself, THEN add in the Server Variables to match!! (I've added the first 3 for you as an example)        THANK YOU!!     */
+{footer: $username has expressed excitement to others $getUserVar[excitedac] times and has had excitement expressed by others $getUserVar[excitedac] times!}]
     $endelseif
 $endIf
 /*endexciteds*/
